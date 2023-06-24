@@ -2,6 +2,9 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\Address;
+use App\Models\Category;
+use App\Models\Menu;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
 use Tightenco\Ziggy\Ziggy;
@@ -32,8 +35,12 @@ class HandleInertiaRequests extends Middleware
     {
         return array_merge(parent::share($request), [
             'auth' => [
-                'user' => $request->user(),
+                'user' => auth()->check() ? auth()->user() : null,
+                'address' => auth()->check() ? Address::where('user_id', auth()->user()->id)->first() : null,
             ],
+            'category_menus' => Category::all(),
+            'menus' => Menu::all(),
+            // 'random_menus' => Menu::inRandomOrder()->limit(4)->get(),
             'ziggy' => function () use ($request) {
                 return array_merge((new Ziggy)->toArray(), [
                     'location' => $request->url(),
