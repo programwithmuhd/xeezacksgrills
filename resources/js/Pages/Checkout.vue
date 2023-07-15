@@ -17,6 +17,21 @@ const { cart } = storeToRefs(cartStore)
 
 const props = defineProps({ menus: Object });
 
+const formattedCart = computed(() => {
+    return Object.keys(cartStore.cartContent).map(menuId => {
+        const menu = cartStore.cartContent[menuId];
+
+        return {
+          id: menu.id,
+          image: props.menus.find((c) => c.id === menu.id).image,
+          name: props.menus.find((c) => c.id === menu.id).name,
+          price: props.menus.find((c) => c.id === menu.id).price,
+          quantity: menu.quantity,
+          cost: menu.quantity * props.menus.find((c) => c.id === menu.id).price,
+        }
+      })
+});
+
 const total = computed(() => {
     return Object.keys(cartStore.cartContent).reduce((acc, id) => {
         const menu = props.menus.find(m => m.id == id);
@@ -51,7 +66,6 @@ let submit = () => {
     <XeezacksgrillLayout>
 
         <Head title="Checkout" />
-
         <div class="w-full bg-gray-200">
             <div class="max-w-7xl bg-gray mx-auto">
                 <div class="flex flex-col sm:flex-col lg:flex-row p-6 gap-4">
@@ -66,6 +80,8 @@ let submit = () => {
                                     class="text-sm text-gray-900 font-semibold">{{ usePage().props.auth.user.first_name }}
                                     {{ usePage().props.auth.user.last_name }}</span></div>
                             <div class="text-gray-900 text-sm font-semibold"><span
+                                    class="text-sm text-gray-900 font-semibold">{{ usePage().props.auth.user.mobile_number }}</span></div>
+                                    <div class="text-gray-900 text-sm font-semibold"><span
                                     class="text-sm text-gray-900 font-semibold">Nigeria</span></div>
                             <div class="text-gray-900 text-sm font-semibold"><span
                                     class="text-sm text-gray-900 font-semibold">Kaduna</span></div>
@@ -77,7 +93,7 @@ let submit = () => {
                                     }}</span></div>
                         </div>
                         <div class="bg-white p-4 mt-4">
-                            <template v-for="menu in cart" :key="menu">
+                            <template v-for="menu in formattedCart" :key="menu">
                                 <div class="flex items-center gap-2">
                                     <div class="w-1/5">
                                         <div class="">

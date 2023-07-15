@@ -28,8 +28,11 @@ const { menu_item, image} = toRefs(props)
 <template>
     <Head title="Food Menus" />
     <XeezacksgrillLayout>
-        <div class="grid place-items-center bg-gray-300 h-96">Menus</div>
-        {{ menu_item.id }}
+        <div class="">
+            <div class="lg:h-[600px]">
+                <img class="w-full h-full object-contain object-cover" src="/images/burger.jpg" alt="">
+            </div>
+        </div>
         <div class="max-w-7xl mx-auto">
             <div class="flex-col sm:flex-col md:flex-row flex justify-center px-4 py-6 gap-10">
                 <div class="sm:w-full md:w-1/2 h-1/5">

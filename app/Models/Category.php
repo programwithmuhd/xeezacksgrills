@@ -10,7 +10,8 @@ class Category extends Model
 {
     // use HasFactory;
 
-    protected $guard = [];
+    // protected $guard = [];
+    protected $fillable = ['id', 'name', 'slug']; 
 
     public function menus()
     {

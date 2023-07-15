@@ -99,7 +99,9 @@ const isNavOverlay = () => {
                     <SideNavItem :openSideNav="openSideNav" iconString="Home" />
                     </Link>
                     <div class="border-b border-b-gray-700 my-2.5"></div>
-                    <SideNavItem :openSideNav="openSideNav" iconString="Category" />
+                    <Link :href="route('categories-favorites.index')">
+                        <SideNavItem :openSideNav="openSideNav" iconString="Category" />
+                    </Link>
                     <Link :href="route('menus-list.index')">
                         <SideNavItem :openSideNav="openSideNav" iconString="Menus" />
                     </Link>
@@ -134,7 +136,9 @@ const isNavOverlay = () => {
                 <SideNavItem :openSideNav="true" iconString="Home" />
                 </Link>
                 <div class="border-b border-b-gray-700 my-2.5"></div>
-                <SideNavItem :openSideNav="openSideNav" iconString="Category" />
+                <Link :href="route('categories-favorites.index')">
+                    <SideNavItem :openSideNav="openSideNav" iconString="Category" />
+                </Link>
                 <Link :href="route('menus-list.index')">
                     <SideNavItem :openSideNav="openSideNav" iconString="Menus" />
                 </Link>

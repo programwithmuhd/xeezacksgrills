@@ -14,7 +14,19 @@ class CartController extends Controller
     public function index()
     {
         return Inertia::render('Cart', [
-            'menus' => Menu::all(),
+            'menus' => Menu::orderBy('created_at', 'desc')
+            ->get()
+            ->map(function ($menu) {
+                return [
+                    'id' => $menu->id,
+                    'category_id' => $menu->category_id,
+                    'name' => $menu->name,
+                    'slug' => $menu->slug,
+                    'description' => $menu->description,
+                    'price' => $menu->price,
+                    'image' => asset('/images/menus/' . $menu->image),
+                ];
+            }),
         ]);
     }
 

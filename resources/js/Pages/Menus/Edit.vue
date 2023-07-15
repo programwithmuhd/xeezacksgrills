@@ -44,7 +44,7 @@ const closeModal = () => {
 }
 
 const deleteMenu = (id) => {
-    form.delete(route(`menus-list.destroy`, id), {
+    form.delete(route('menus-list.destroy', id), {
         onSuccess: () => closeModal()
     });
 }
@@ -109,16 +109,12 @@ const deleteMenu = (id) => {
                         <div class="flex items-center justify-between gap-5">
                             <div class="py-4">
                                 <button type="submit"
-                                    class="w-full bg-yellow-400 px-3 py-3 font-bold text-lg rounded-lg shadow-sm cursor-pointer">
+                                    class="inline-flex items-center px-4 py-2 bg-green-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-green-500 active:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition ease-in-out duration-150">
                                     Update Menu
                                 </button>
                             </div>
                             <div class="py-4">
-                                <button @click="confirmDeleteMenu" class="text-sm md:text-sm text-white 
-                                        rounded-sm shadow-sm focus:outline-none 
-                                        focus:ring-2 focus:ring-offset-2 
-                                        bg-red-500 hover:bg-red-600 px-8 
-                                        py-2">
+                                <button type="submit" @click="confirmDeleteMenu" class="inline-flex items-center px-4 py-2 bg-red-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-red-500 active:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 transition ease-in-out duration-150">
                                     Delete
                                 </button>
                                 <Modal :show="showConfirmDeleteMenuModal" @close="closeModal">

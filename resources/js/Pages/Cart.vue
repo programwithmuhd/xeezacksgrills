@@ -1,18 +1,19 @@
 <script setup>
-import { Head, Link } from '@inertiajs/vue3';
-import XeezacksgrillLayout from '@/Layouts/XeezacksgrillLayout.vue';
-import { toRefs, computed } from 'vue'
+import XeezacksgrillLayout from '@/Layouts/XeezacksgrillLayout.vue'
+import { ref, toRefs, computed } from 'vue'
+import { Head, Link, useForm, usePage } from '@inertiajs/vue3'
 import PlusIcon from 'vue-material-design-icons/Plus.vue'
 import MinusIcon from 'vue-material-design-icons/Minus.vue'
+import TrashIcon from 'vue-material-design-icons/Delete.vue'
 import Slider from "@/Pages/Slider.vue";
 
 import { useCartStore } from '@/store/cart'
 import { storeToRefs } from 'pinia';
-import { ref } from 'vue';
 const cartStore = useCartStore()
 const { cart } = storeToRefs(cartStore)
 
 const props = defineProps({menus: Object});
+
 
 const formattedCart = computed(() => {
     return Object.keys(cartStore.cartContent).map(menuId => {
@@ -72,10 +73,6 @@ const cartTotal = computed(() => {
     <Head title="Food Menus" />
 
     <XeezacksgrillLayout>
-        <!-- {{ $page.props.auth.user }} -->
-        {{ cartStore.cartContent }}
-        <!-- {{ props.menus }}
-        {{ cartTotal }} -->
         <div class="container mx-auto px-4 py-6">
             <div class="px-4 py-6 text-center text-3xl font-semibold text-gray-900">Your Cart Menus</div>
             <div class="flex-col sm:flex-col md:flex-row flex justify-between gap-10">
@@ -115,7 +112,7 @@ const cartTotal = computed(() => {
                                         </div>
                                     </td>
                                     <td class="p-3 text-center text-xl text-gray-700 whitespace-nowrap">
-                                        <button @click="cartStore.removeMenuFromCart(menu.id)" type="submit" class="text-lg md:text-lg text-gray-900 rounded-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 px-8 py-2">Delete</button>
+                                        <TrashIcon class="cursor-pointer text-red-600" @click="cartStore.removeMenuFromCart(menu.id)" size="40" />
                                     </td>
                                 </tr>
                             </template>
@@ -203,7 +200,11 @@ const cartTotal = computed(() => {
                             
                             -->
 
-                            <Link :href="route('checkout.index')"
+                            <Link
+                                :disabled="cartTotal === 0"
+                                :class="cartTotal === 0 ? 'bg-gray-400' : 'bg-green-500 hover:bg-green-600'"
+                                as="button"
+                                :href="$page.props.auth.user !== null ? route('checkout.index') : route('login')"
                                 class="
                                     block
                                     w-full
@@ -212,6 +213,7 @@ const cartTotal = computed(() => {
                                     py-2
                                     font-bold
                                     text-sm
+                                    text-white
                                     rounded-lg
                                     border
                                     shadow-sm

@@ -55,7 +55,7 @@ class MenuController extends Controller
                                 'slug' => $menu->slug,
                                 'description' => $menu->description,
                                 'price' => $menu->price,
-                                'image' => asset('storage/' . $menu->image),
+                                'image' => asset('/images/menus/' . $menu->image),
                             ];
                         }),
             'categoryName' => $categoryName,
@@ -89,7 +89,7 @@ class MenuController extends Controller
 
         return inertia::render('Menu', [
             'menu_item' => Menu::find($menu->id),
-            'image' => asset('storage/' . $menu->image),
+            'image' => asset('/images/menus/' . $menu->image),
 
         ]);
     }

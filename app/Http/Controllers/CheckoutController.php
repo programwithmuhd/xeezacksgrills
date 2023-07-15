@@ -2,15 +2,30 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\Menu;
 use Inertia\Inertia;
+use Illuminate\Http\Request;
 
 class CheckoutController extends Controller
 {
 
     public function index()
     {
-        return Inertia::render('Checkout');
+        return Inertia::render('Checkout', [
+            'menus' => Menu::orderBy('created_at', 'desc')
+            ->get()
+            ->map(function ($menu) {
+                return [
+                    'id' => $menu->id,
+                    'category_id' => $menu->category_id,
+                    'name' => $menu->name,
+                    'slug' => $menu->slug,
+                    'description' => $menu->description,
+                    'price' => $menu->price,
+                    'image' => asset('/images/menus/' . $menu->image),
+                ];
+            }),
+        ]);
     }
     /**
      * Display a listing of the resource.

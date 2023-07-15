@@ -17,7 +17,11 @@ defineProps({ menus: Object, categories: Object, categoryName: String, menu_item
     <Head title="Food Menus" />
 
     <XeezacksgrillLayout>
-        <div class="grid place-items-center bg-gray-300 h-96">Menus</div>
+        <div class="">
+            <div class="lg:h-[600px]">
+                <img class="w-full h-full object-contain object-cover" src="/images/burger.jpg" alt="">
+            </div>
+        </div>
         <div class="w-full mx-auto bg-white">
             <div class="max-w-7xl mx-auto px-4 pb-8 mt-10">
                 <div class="flex-col-reverse sm:flex-col-reverse md:flex-col-reverse lg:flex-row flex-auto flex justify-between gap-5">

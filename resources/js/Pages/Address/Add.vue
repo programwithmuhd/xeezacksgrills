@@ -83,7 +83,7 @@ let submit = () => {
             </div>
             <div class="py-4">
                 <button class="w-full bg-yellow-400 px-3 py-3 font-bold text-lg rounded-lg shadow-sm cursor-pointer">
-                    Place order
+                    Add Address
                 </button>
             </div>
         </form>

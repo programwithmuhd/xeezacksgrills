@@ -15,26 +15,32 @@ class CategoryTableSeeder extends Seeder
     {
         Category::create([
             'name' => 'Soup',
+            'slug' => 'Soup',
         ]);
 
         Category::create([
             'name' => 'Salad',
+            'slug' => 'Salad',
         ]);
 
         Category::create([
             'name' => 'Cold Appetizers',
+            'slug' => 'cold-appetizers',
         ]);
 
         Category::create([
             'name' => 'Hot Appetizers',
+            'slug' => 'hot-appetizers',
         ]);
 
         Category::create([
             'name' => 'Meat',
+            'slug' => 'meat',
         ]);
 
         Category::create([
             'name' => 'Chicken Dishes',
+            'slug' => 'chicken-dishes',
         ]);
     }
 }

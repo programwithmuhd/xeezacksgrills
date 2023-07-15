@@ -5,7 +5,7 @@ import Dropdown from '@/Components/Dropdown.vue';
 import DropdownLink from '@/Components/DropdownLink.vue';
 import NavLink from '@/Components/NavLink.vue';
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink.vue';
-import { Link } from '@inertiajs/vue3';
+import { Link, usePage } from '@inertiajs/vue3';
 import CartMinusIcon from 'vue-material-design-icons/CartMinus.vue';
 import CartIcon from 'vue-material-design-icons/Cart.vue';
 import AccountLockOpen from 'vue-material-design-icons/AccountLockOpen.vue';
@@ -161,8 +161,8 @@ const accountAndListFunc = (bool) => {
                         <ul class="md:flex flex-col sm:flex-col md:flex-row lg:flex-row items-center transition ease-in-out delay-150"
                             :class="showMenu ? ['flex'] : 'hidden'">
                             <li class="px-8 py-4">
-                                <a class="text-lg font-semibold text-gray-900 hover:text-black hover:bg-yellow-400 py-3 px-3"
-                                    href="">About</a>
+                                <Link class="text-lg font-semibold text-gray-900 hover:text-black hover:bg-yellow-400 py-3 px-3"
+                                    :href="route('about.index')">About</Link>
                             </li>
                             <li class="px-8 py-4">
                                 <Link
@@ -179,8 +179,8 @@ const accountAndListFunc = (bool) => {
                                     href="#">Reservation</a>
                             </li>
                             <li class="px-8 py-4">
-                                <a class="text-lg font-semibold text-gray-900 hover:text-black hover:bg-yellow-400 py-3 px-3 700"
-                                    href="#">Contact</a>
+                                <Link class="text-lg font-semibold text-gray-900 hover:text-black hover:bg-yellow-400 py-3 px-3 700"
+                                    :href="route('contact.index')">Contact</Link>
                             </li>
                         </ul>
                     </div>
