@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Reservation;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -26,9 +28,23 @@ class LandingPageController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
     {
-        //
+        $reservation = $request->validate([
+            'grilled_meat' => 'required',
+            'grilled_chicken' => 'required',
+            'tea_cups' => 'required',
+            'comments' => 'required',
+        ]);
+        dd($reservation);
+        Reservation::create([
+            'grilled_meat' => $request->grilled_meat,
+            'grilled_chicken' => $request->grilled_chicken,
+            'tea_cups' => $request->tea_cups,
+            'comments' => $request->comments,
+        ]);
+
+        return to_route('landing-page.index');
     }
 
     /**

@@ -175,8 +175,8 @@ const accountAndListFunc = (bool) => {
                                     href="/menus">Menu</Link>
                             </li>
                             <li class="px-8 py-4">
-                                <a class="text-lg font-semibold text-gray-900 hover:text-black hover:bg-yellow-400 py-3 px-3 700"
-                                    href="#">Reservation</a>
+                                <Link class="text-lg font-semibold text-gray-900 hover:text-black hover:bg-yellow-400 py-3 px-3 700"
+                                    href="#reservation">Reservation</Link>
                             </li>
                             <li class="px-8 py-4">
                                 <Link class="text-lg font-semibold text-gray-900 hover:text-black hover:bg-yellow-400 py-3 px-3 700"

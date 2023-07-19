@@ -28,6 +28,7 @@ use App\Http\Controllers\CustomerController;
 */
 Route::get('/about', function() {return Inertia::render('About');})->name('about.index');
 Route::get('/', [LandingPageController::class, 'index'])->name('landing-page.index');
+Route::post('/', [LandingPageController::class, 'store'])->name('landing-page.store');
 Route::get('/menus', [MenuController::class, 'index'])->name('menus.index');
 Route::get('/menu/{menu}', [MenuController::class, 'show'])->name('menu.show');
 Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
