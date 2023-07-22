@@ -38,7 +38,25 @@ Route::get('/verify', [CheckoutController::class, 'paymentCallBack'])->name('che
 Route::get('/contact', function() {return Inertia::render('Contact');})->name('contact.index');
 
 // Dashboard layout pages
-Route::get('/categories-favorites', [CategoriesController::class, 'index'])->name('categories-favorites.index');
+Route::get('/users', [UsersController::class, 'index'])->name('users.index');
+Route::get('/users/create', [UsersController::class, 'create'])->name('users.create');
+Route::post('/users', [UsersController::class, 'store'])->name('users.store');
+
+// Route::get('/customer/login', [CustomerController::class, 'index'])->name('customer-login.index');
+// Route::get('/customer/register', [CustomerController::class, 'create'])->name('customer-register.create');
+// Route::post('/customer/register', [CustomerController::class, 'store'])->name('customer-register.store');
+
+
+// Route::middleware('auth')->group(function () {
+//     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+//     Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
+//     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+// });
+
+
+Route::group(['middleware' => 'auth:sanctum'], function() {
+
+    Route::get('/categories-favorites', [CategoriesController::class, 'index'])->name('categories-favorites.index');
 Route::get('/categories-favorites/create', [CategoriesController::class, 'create'])->name('categories-favorites.create');
 Route::post('/categories-favorites', [CategoriesController::class, 'store'])->name('categories-favorites.store');
 Route::get('/categories-favorites/{category}/edit', [CategoriesController::class, 'edit'])
@@ -47,15 +65,6 @@ Route::put('/categories-favorites/{category}', [CategoriesController::class, 'up
     ->name('categories-favorites.update');
 Route::delete('/categories-favorites/{category}', [MenusController::class, 'destroy'])
     ->name('categories-favorites.destroy');
-
-Route::get('/users', [UsersController::class, 'index'])->name('users.index');
-Route::get('/users/create', [UsersController::class, 'create'])->name('users.create');
-Route::post('/users', [UsersController::class, 'store'])->name('users.store');
-
-Route::get('/customer/login', [CustomerController::class, 'index'])->name('customer-login.index');
-Route::get('/customer/register', [CustomerController::class, 'create'])->name('customer-register.create');
-Route::post('/customer/register', [CustomerController::class, 'store'])->name('customer-register.store');
-
 Route::get('/menus-list', [MenusController::class, 'index'])->name('menus-list.index');
 Route::get('/menus-list/create', [MenusController::class, 'create'])->name('menus-list.create');
 Route::post('/menus-list', [MenusController::class, 'store'])->name('menus-list.store');
@@ -72,10 +81,7 @@ Route::get('/add-address', [AddressController::class, 'create'])
 Route::post('/add-address', [AddressController::class, 'store'])
     ->name('address.store');
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
 });
 
 

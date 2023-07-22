@@ -1,60 +1,64 @@
-<script>
+<script setup>
+import { ref, watch } from 'vue';
+import { Head, router, Link, useForm } from '@inertiajs/vue3';
 import DashboardLayout from '@/Layouts/DashboardLayout.vue';
-import Pagination from '@/Components/Pagination.vue';
-import { router, Link } from '@inertiajs/vue3';
-import { pickBy } from 'lodash';
-import { throttle } from 'lodash';
-export default {
-    components: {
-    DashboardLayout,
-    Pagination,
-    Link
-},
+// import RouterLinkButton from '@/Components/RouterLinkButton.vue';
+import { toRefs, computed } from 'vue'
 
-    props: {
-        categories: Object,
-        filters: Object,
-    },
+const props = defineProps({ categories: Object, filters: Object })
 
-    data() {
-        return {
-            params: {
-                search: this.filters.search,
-                field: this.filters.field,
-                direction: this.filters.direction,
-            }
-        }
-    },
+let params = ref({
+    search: props.filters.search,
+    field: props.filters.field,
+    direction: props.filters.direction,
+})
 
-    methods: {
-        sort(field) {
-            this.params.field = field;
-            this.params.direction = this.params.direction === 'asc' ? 'desc' : 'asc';
-        }
-    },
-
-watch: {
-    params: {
-        handler: throttle(function() {
-
-            let params = pickBy(this.params);
-
-            this.$inertia.get(route('categories-favorites.index'), params, { replace: true, preserveState: true });
-        }, 150),
-        deep: true
-    }
+const sort = (field) => {
+    params.value.field = field;
+    params.value.direction = params.direction === 'asc' ? 'desc' : 'asc';
 }
-}
+
+watch(params, () => {
+    // Object.keys[params.value].forEach(key => {
+    //     if(params.value[key] == '') {
+    //         delete params.value[key];
+    //     }
+    // });
+
+    // form.post('/profile', {
+    //     preserveScroll: true,
+    //     onSuccess: () => form.reset('password'),
+    // })
+    router.get(route('categories-favorites.index'), params.value, {replace: true, preserveState: true})
+}, {deep: true})
+
+
+// let search = ref('')
+
+// const field = ref('')
+// const direction = ref('')
+
+// const sort = (field) => {
+//     field.value = field;
+//     direction.value = direction.value === 'asc' ? 'desc' : 'asc';
+// }
+
+// watch(search, value => {
+//     router.get('/categories-favorites', {search: value}, {
+//         preserveState: true
+//     })
+// })
+
 </script>
 
 <template>
     <Head title="Categories Menus" />
 
     <DashboardLayout>
-        <div class="flex items-center justify-between bg-white px-6">
-            <div class="">
-                <h2 class="text-xl font-bold px-4 py-[22px]">Categories</h2>
-            </div>
+    <div class="flex items-center justify-between bg-white px-6">
+        <div class="">
+            <h2 class="text-xl font-bold px-4 py-[22px]">Categories</h2>
+        </div>
         </div>
         <div class="bg-gray-200 px-6 pt-16">
             <div class="flex-col md:flex-row items-center justify-end -mt-10 pb-8">
@@ -97,21 +101,15 @@ watch: {
                         <thead class="border-b bg-yellow-400 border-gray-400">
                             <tr class="">
                                 <th class="w-25 p-3 text-xl font-semibold tracking-wide text-center">
-                                    <div>
-                                        <span class="inline-flex items-center justify-center" @click="sort('name')">Name
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                                stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                                <path stroke-linecap="round" stroke-linejoin="round"
-                                                    d="M12 4.5v15m0 0l6.75-6.75M12 19.5l-6.75-6.75" />
-                                            </svg>
-
-                                            <svg v-if="params.field === 'name' && params.direction === 'desc'"
-                                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                                stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                                <path stroke-linecap="round" stroke-linejoin="round"
-                                                    d="M12 19.5v-15m0 0l-6.75 6.75M12 4.5l6.75 6.75" />
-                                            </svg>
-                                        </span>
+                                    <div class="flex items-center justify-center">
+                                        <span class="px-4" @click="sort('name')">Name</span>
+                                        <svg v-if="params.field === 'name' && params.direction === 'asc'" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                          <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m0 0l6.75-6.75M12 19.5l-6.75-6.75" />
+                                        </svg>
+                                        
+                                        <svg v-if="params.field === 'name' && params.direction === 'desc'" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                          <path stroke-linecap="round" stroke-linejoin="round" d="M12 19.5v-15m0 0l-6.75 6.75M12 4.5l6.75 6.75" />
+                                        </svg>
                                     </div>
                                 </th>
                                 <th class="w-25 p-3 text-xl font-semibold tracking-wide text-center">Slug</th>
@@ -122,12 +120,10 @@ watch: {
                         <tbody class="divide-y divide-gray-400">
                             <template v-for="category in categories.data" :key="category.id">
                                 <tr class="even:bg-[#EDD2877D] odd:bg-gray-200">
-                                    <td class="p-3 text-center text-xl text-gray-700 whitespace-nowrap">{{ category.name }}
-                                    </td>
-                                    <td class="p-3 text-center text-xl text-gray-700 whitespace-nowrap">{{ category.slug }}
-                                    </td>
+                                    <td class="p-3 text-center text-xl text-gray-700 whitespace-nowrap">{{ category.name }}</td>
+                                    <td class="p-3 text-center text-xl text-gray-700 whitespace-nowrap">{{ category.slug }}</td>
                                     <td class="p-3 text-center text-xl text-gray-700 whitespace-nowrap">
-                                        <Link :href="route('categories-favorites.edit', { category: category.id })" class="
+                                        <Link :href="route('categories-favorites.edit', {category: category.id})" class="
                                             text-sm 
                                             md:text-sm 
                                             text-white 
@@ -157,6 +153,5 @@ watch: {
                 </div>
             </div>
         </div>
-        <Pagination :Links="categories.Links" class="bg-red-500"/>
     </DashboardLayout>
 </template>

@@ -1,15 +1,12 @@
 <script>
 import DashboardLayout from '@/Layouts/DashboardLayout.vue';
-import Pagination from '@/Components/Pagination.vue';
-import { router, Link } from '@inertiajs/vue3';
+import { router } from '@inertiajs/vue3';
 import { pickBy } from 'lodash';
 import { throttle } from 'lodash';
 export default {
     components: {
-    DashboardLayout,
-    Pagination,
-    Link
-},
+        DashboardLayout,
+    },
 
     props: {
         categories: Object,
@@ -157,6 +154,5 @@ watch: {
                 </div>
             </div>
         </div>
-        <Pagination :Links="categories.Links" class="bg-red-500"/>
     </DashboardLayout>
 </template>

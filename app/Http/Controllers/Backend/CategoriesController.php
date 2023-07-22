@@ -15,14 +15,23 @@ class CategoriesController extends Controller
      */
     public function index()
     {
+        request()->validate([
+            'direction' => ['in:asc,desc'],
+            'field' => ['in:name,slug'],
+        ]);
         $query = Category::query();
        
         if(request('search')) {
             $query->where('name', 'LIKE', '%'. request('search') . '%');
         } 
 
+        if(request()->has(['field', 'direction'])) {
+            $query->orderBy(request('field'), request('direction'));
+        }
+
         return Inertia::render('Categories/Index', [
-            'categories' => $query->paginate()
+            'categories' => $query->paginate(10),
+            'filters' => request()->all(['search', 'field', 'direction'])
             // 'categories' => Category::all()
         ]);
     }
