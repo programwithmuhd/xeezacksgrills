@@ -37,4 +37,5 @@
   if (iconString.value === 'Category') icon = FolderPlayOutline
   if (iconString.value === 'Menus') icon = CartIcon
   if (iconString.value === 'Users') icon = Users
+  if (iconString.value === 'Address') icon = History
 </script>

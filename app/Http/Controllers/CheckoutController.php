@@ -39,8 +39,8 @@ class CheckoutController extends Controller
             // 'phone_number' => request('phone_number'),
             // 'first_name' => request('first_name'),
             // 'last_name' => request('last_name'),
-            'email' => request('email'),
             'phone' => request('phone'),
+            'email' => request('email'),
             // 'state' => request('state'),
             // 'city' => request('city'),
             'amount' => request('amount') * 100,
@@ -48,7 +48,7 @@ class CheckoutController extends Controller
             // 'addr1' => request('addr1'),
             'callback_url' => route('checkout.callback'),
         ];
-
+        // dd($formData);
         $pay = json_decode($this->initializePayment($formData));
         // dd($pay);
         if ($pay->status) {

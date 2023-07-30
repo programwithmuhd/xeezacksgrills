@@ -71,7 +71,7 @@ const deleteCategory = (id) => {
                         </div>
                         <div class="flex items-center justify-between gap-5">
                             <div class="py-4">
-                                <button type="submit"
+                                <button
                                     class="inline-flex items-center px-4 py-2 
                                         bg-green-600 border border-transparent 
                                         rounded-md font-semibold text-xs text-white 
@@ -110,7 +110,7 @@ const deleteCategory = (id) => {
                                             <SecondaryButton @click="closeModal">Cancel</SecondaryButton>
                                         </div>
                                     </div>
-                                </Modal>
+                                </Modal> 
                             </div>
                         </div>
                     </form>

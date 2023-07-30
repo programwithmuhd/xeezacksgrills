@@ -18,7 +18,9 @@ class AddressController extends Controller
      */
     public function index()
     {
-        
+        return Inertia::render('Address/AddressIndex', [
+            'addresses' => Address::all()
+        ]);
     }
 
     /**
@@ -37,7 +39,7 @@ class AddressController extends Controller
         $request->validate([
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
-            'mobile_number' => 'required|digits:11',
+            'phone' => 'required|digits:11',
             'email' => 'required|string|email|max:255|unique:'.User::class,
             'password' => ['required'],
             'state' => ['required'],
@@ -51,7 +53,7 @@ class AddressController extends Controller
                 $user = User::create([
                     'first_name' => $request->first_name,
                     'last_name' => $request->last_name,
-                    'mobile_number' => $request->mobile_number,
+                    'phone' => $request->phone,
                     'email' => $request->email,
                     'password' => Hash::make($request->password),
                 ]);

@@ -3,6 +3,7 @@ import { Head, Link } from '@inertiajs/vue3';
 import DashboardLayout from '@/Layouts/DashboardLayout.vue';
 import { toRefs, computed } from 'vue'
 
+defineProps({addresses: Object})
 </script>
 
 <template>
@@ -11,7 +12,7 @@ import { toRefs, computed } from 'vue'
     <DashboardLayout>
         <div class="flex items-center justify-between bg-white">
             <div class="">
-                <h2 class="text-xl font-bold px-4 py-[22px]">Users</h2>
+                <h2 class="text-xl font-bold px-4 py-[22px]">Addess</h2>
             </div>
             <div class="">
                 <Link href="/users/create" class="text-lg md:text-lg text-gray-900 rounded-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 px-8">Add</LInk>
@@ -51,24 +52,25 @@ import { toRefs, computed } from 'vue'
                     <table class="w-full border border-spacing-1 border-gray-400">
                         <thead class="border-b bg-yellow-400 border-gray-400">
                             <tr class="">
-                                <th class="w-25 p-3 text-xl font-semibold tracking-wide text-center">Name</th>
-                                <th class="w-25 p-3 text-xl font-semibold tracking-wide text-center">Surname</th>
-                                <th class="w-25 p-3 text-xl font-semibold tracking-wide text-center">Email</th>
-                                <th class="w-25 p-3 text-xl font-semibold tracking-wide text-center">Phone</th>
+                                <th class="w-25 p-3 text-xl font-semibold tracking-wide text-center">City</th>
+                                <th class="w-25 p-3 text-xl font-semibold tracking-wide text-center">State</th>
+                                <th class="w-25 p-3 text-xl font-semibold tracking-wide text-center">District</th>
+                                <th class="w-25 p-3 text-xl font-semibold tracking-wide text-center">Adress</th>
                                 <th colspan="2" class="w-25 p-3 text-xl font-semibold tracking-wide text-center">Actions
                                 </th>
                             </tr>
                         </thead>
                         <tbody class="divide-y divide-gray-400">
-                            <tr class="even:bg-[#EDD2877D] odd:bg-gray-200">
+                            <template v-for="address in addresses" :key="address.id">
+                                <tr class="even:bg-[#EDD2877D] odd:bg-gray-200">
                                 <td class="p-3 text-center text-xl text-gray-700 whitespace-nowrap">
-                                    Muhammad
+                                    {{ address.state }}
                                 </td>
-                                <td class="p-3 text-center text-xl text-gray-700 whitespace-nowrap">Abubakar</td>
-                                <td class="p-3 text-center text-xl text-gray-700 whitespace-nowrap">talktomuhd@gmail.com
+                                <td class="p-3 text-center text-xl text-gray-700 whitespace-nowrap">{{ address.city }}</td>
+                                <td class="p-3 text-center text-xl text-gray-700 whitespace-nowrap">{{ address.district }}
                                 </td>
                                 <td class="p-3  text-center text-xl text-gray-700 whitespace-nowrap">
-                                    08036854530
+                                    {{ address.address }}
                                 </td>
                                 <td class="p-3 text-center text-xl text-gray-700 whitespace-nowrap">
                                     <button type="submit" class="text-sm md:text-sm text-white rounded-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 bg-green-500 hover:bg-green-600 px-8 py-2">Update</button>
@@ -77,6 +79,14 @@ import { toRefs, computed } from 'vue'
                                     <button type="submit" class="text-sm md:text-sm text-white rounded-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 bg-red-500 hover:bg-red-600 px-8 py-2">Delete</button>
                                 </td>
                             </tr>
+                            </template>
+                            <template v-if="addresses.length === 0">
+                                <tr>
+                                    <td colspan="6" class="p-3 text-center text-xl text-gray-700 whitespace-nowrap">
+                                        No menus found.
+                                    </td>
+                                </tr>
+                            </template>
                         </tbody>
                     </table>
             </div>

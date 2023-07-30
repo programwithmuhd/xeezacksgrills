@@ -44,8 +44,8 @@ const total = computed(() => {
 
 
 const form = reactive({
+    phone: usePage().props.auth.user.phone,
     email: usePage().props.auth.user.email,
-    phone: usePage().props.auth.user.mobile_number,
     amount: total,
 });
 
@@ -64,9 +64,10 @@ let submit = () => {
     <Head title="Food Menus" />
 
     <XeezacksgrillLayout>
-
+        
         <Head title="Checkout" />
         <div class="w-full bg-gray-200">
+            {{ $page.props.auth.user }}
             <div class="max-w-7xl bg-gray mx-auto">
                 <div class="flex flex-col sm:flex-col lg:flex-row p-6 gap-4">
                     <div class="w-full lg:w-3/5">
@@ -80,7 +81,7 @@ let submit = () => {
                                     class="text-sm text-gray-900 font-semibold">{{ usePage().props.auth.user.first_name }}
                                     {{ usePage().props.auth.user.last_name }}</span></div>
                             <div class="text-gray-900 text-sm font-semibold"><span
-                                    class="text-sm text-gray-900 font-semibold">{{ usePage().props.auth.user.mobile_number }}</span></div>
+                                    class="text-sm text-gray-900 font-semibold">{{ usePage().props.auth.user.phone }}</span></div>
                                     <div class="text-gray-900 text-sm font-semibold"><span
                                     class="text-sm text-gray-900 font-semibold">Nigeria</span></div>
                             <div class="text-gray-900 text-sm font-semibold"><span
@@ -123,10 +124,10 @@ let submit = () => {
                                 </div>
                                 <form @submit.prevent="submit">
                                     <div class="py-4">
-                                        <TextInput v-model="form.email" type="hidden" class="mt-1 block w-full" required />
+                                        <TextInput v-model="form.phone" type="hidden" class="mt-1 block w-full" required />
                                     </div>
                                     <div class="py-4">
-                                        <TextInput v-model="form.phone" type="hidden" class="mt-1 block w-full" required />
+                                        <TextInput v-model="form.email" type="hidden" class="mt-1 block w-full" required />
                                     </div>
                                     <div class="py-4">
                                         <TextInput v-model="form.amount" type="hidden" class="mt-1 block w-full" required />

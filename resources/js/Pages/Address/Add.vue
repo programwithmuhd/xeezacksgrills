@@ -10,7 +10,7 @@ import { Head, Link, useForm } from '@inertiajs/vue3';
 const form = useForm({
     first_name: '',
     last_name: '',
-    mobile_number: '',
+    phone: '',
     email: '',
     password: '',
     state: '',
@@ -50,10 +50,10 @@ const submit = () => {
                 <InputError class="mt-2" :message="form.errors.last_name" />
             </div>
             <div class="mt-4">
-                <InputLabel value="Mobile number" />
+                <InputLabel value="phone" />
 
-                <TextInput type="text" class="mt-1 block w-full" v-model="form.mobile_number" required
-                    autocomplete="mobile_number" />
+                <TextInput type="text" class="mt-1 block w-full" v-model="form.phone" required
+                    autocomplete="phone" />
 
                 <InputError class="mt-2" :message="form.errors.mobile_number" />
             </div>

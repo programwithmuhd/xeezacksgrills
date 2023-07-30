@@ -6,8 +6,10 @@ use App\Models\Category;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Support\Facades\Hash;
+use Spatie\Searchable\Searchable;
+use Spatie\Searchable\SearchResult;
 
-class Menu extends Model
+class Menu extends Model implements Searchable
 {
     // use HasFactory;
 
@@ -21,5 +23,16 @@ class Menu extends Model
     public function setPasswordAttribute($value)
     {
         $this->attributes['password'] = Hash::make($value);
+    }
+
+    public function getSearchResult(): SearchResult
+    {
+        $url = route('menu.show', $this->id);
+     
+        return new \Spatie\Searchable\SearchResult(
+           $this,
+           $this->name,
+           $url
+        );
     }
 }

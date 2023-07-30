@@ -15,6 +15,10 @@ import CloseIcon from 'vue-material-design-icons/Close.vue';
 import ChevronRightIcon from 'vue-material-design-icons/ChevronRight.vue';
 
 import { useCartStore } from '@/store/cart';
+
+  import axios from 'axios';
+  import { debounce } from 'lodash';
+import { watch } from 'vue';
 const cartStore = useCartStore()
 
 let showMenu = ref(false)
@@ -25,7 +29,44 @@ const accountAndListFunc = (bool) => {
         accountAndList.value = bool
     }, 150)
 }
+  
+  const isOpen = ref(true)
+  
+  function closeModal() {
+    isOpen.value = false
+  }
+  function openModal() {
+    isOpen.value = true
+  }
 
+  const isLoading = ref(false)
+  const results = ref([])
+
+  const search = debounce(async (term) => {
+    isLoading.value = true;
+    let { data }  = await axios.get('/api/search', {params: {search: term}});
+    results.value = data;
+    isLoading.value = false;
+  }, 250);
+
+
+//   let searchItem = ref('')
+//   let items = ref(null)
+
+//   const searchByName = debounce(async () => {
+//     items.value = await axios.get(`/api/search/${searchItem.value}`);
+//   }, 250);
+
+//   watch(() => searchItem.value, async () => {
+//     if(!searchItem.value) {
+//         setTimeout(() => {
+//             items.value = '';
+//             return
+//         }, 500)
+//     }
+//     searchByName()
+//     console.log(items.value)
+//   })
 </script>
 
 <template>
@@ -101,7 +142,7 @@ const accountAndListFunc = (bool) => {
                                     </Link>
                                     <div class="text-sm pt-4">
                                         New customer?
-                                        <Link href="/" class="text-blue-700 hover:text-red-700">
+                                        <Link :href="route('address.create')" class="text-blue-700 hover:text-red-700">
                                         Start here.
                                         </Link>
                                     </div>
@@ -143,7 +184,7 @@ const accountAndListFunc = (bool) => {
                 </div>
             </div>
             <nav
-                class="container mx-auto bg-[#F4E3B4] flex flex-col flex-auto items-center lg:flex-row justify-between px-6 py-0">
+                class="w-full mx-auto bg-[#F4E3B4] flex flex-col flex-auto items-center lg:flex-row justify-between px-6 py-0">
                 <!-- Logo -->
                 <div class="logo mb-2">
                     <a class="" href="/">
@@ -152,8 +193,22 @@ const accountAndListFunc = (bool) => {
                 </div>
                 <div class="px-4 mx-auto">
                     <input
+                    @input="(e) => search(e.target.value)"
                         class="border-[#F4E3B4] bg-white focus:border-yellow-400 focus:ring-yellow-400 rounded-lg shadow-sm"
-                        type="search" name="" id="">
+                        type="search" name="">
+                    <div
+                    v-if="results.length > 0 && !isLoading"
+                     class="absolute z-10 w-fit p-1">
+                     <template v-for="menu in results" :key="menu.id">
+                        <div class="border border-gray-400 w-full cursor-pointer text-black bg-white">
+                            <Link :href="menu.url">
+                                <div class="flex items-center py-4 px-2">
+                                    <div class="text-clip text-gray-900 ml-2">{{ menu.title }}</div>
+                                </div>
+                            </Link>
+                         </div>
+                    </template>
+                    </div>
                 </div>
                 <!-- End of logo div -->
                 <div class="menu-navs order-2 sm:order-2 md:order-2 lg:order-1">

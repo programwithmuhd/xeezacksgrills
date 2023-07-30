@@ -105,7 +105,12 @@ const isNavOverlay = () => {
                     <Link :href="route('menus-list.index')">
                         <SideNavItem :openSideNav="openSideNav" iconString="Menus" />
                     </Link>
-                    <SideNavItem :openSideNav="openSideNav" iconString="Users" />
+                    <Link :href="route('users.index')">
+                        <SideNavItem :openSideNav="openSideNav" iconString="Users" />
+                    </Link>
+                    <Link :href="route('address.index')">
+                        <SideNavItem :openSideNav="openSideNav" iconString="Address" />
+                    </Link>
                 </ul>
             </div>
         </div>
@@ -142,7 +147,12 @@ const isNavOverlay = () => {
                 <Link :href="route('menus-list.index')">
                     <SideNavItem :openSideNav="openSideNav" iconString="Menus" />
                 </Link>
-                <SideNavItem :openSideNav="openSideNav" iconString="Users" />
+                <Link :href="route('users.index')">
+                    <SideNavItem :openSideNav="openSideNav" iconString="Users" />
+                </Link>
+                <Link :href="route('address.index')">
+                    <SideNavItem :openSideNav="openSideNav" iconString="Address" />
+                </Link>
             </ul>
         </div>
         <!-- OVERLAY NAV SECTION END -->

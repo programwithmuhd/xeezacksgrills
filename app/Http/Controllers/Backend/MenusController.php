@@ -20,21 +20,53 @@ class MenusController extends Controller
      */
     public function index()
     {
-        return Inertia::render('Menus/Index', [
-            'menus' => Menu::orderBy('created_at', 'desc')
-                        ->get()
-                        ->map(function ($menu) {
-                            return [
-                                'id' => $menu->id,
-                                'category_id' => $menu->category_id,
-                                'name' => $menu->name,
-                                'slug' => $menu->slug,
-                                'description' => $menu->description,
-                                'price' => $menu->price,
-                                'image' => asset('/images/menus/' . $menu->image),
-                            ];
-                        }),               
+        request()->validate([
+            'direction' => ['in:asc,desc'],
+            'field' => ['in:name,slug'],
         ]);
+        $query = Menu::query();
+       
+        if(request('search')) {
+            $query->where('name', 'LIKE', '%'. request('search') . '%');
+        } 
+
+        if(request()->has(['field', 'direction'])) {
+            $query->orderBy(request('field'), request('direction'));
+        }
+
+        return Inertia::render('Menus/MenuIndex', [
+            'menus' => $query->paginate(10)
+                            ->through(function ($menu) {
+                                return [
+                                    'id' => $menu->id,
+                                    'category_id' => $menu->category_id,
+                                    'name' => $menu->name,
+                                    'slug' => $menu->slug,
+                                    'description' => $menu->description,
+                                    'price' => $menu->price,
+                                    'image' => asset('/images/menus/' . $menu->image),
+                                ];
+                            }),
+            'filters' => request()->all(['search', 'field', 'direction'])
+            // 'categories' => Category::all()
+        ]);
+
+
+        // return Inertia::render('Menus/Index', [
+        //     'menus' => Menu::orderBy('created_at', 'desc')
+        //                 ->get()
+        //                 ->map(function ($menu) {
+        //                     return [
+        //                         'id' => $menu->id,
+        //                         // 'category_id' => $menu->category_id,
+        //                         'name' => $menu->name,
+        //                         'slug' => $menu->slug,
+        //                         'description' => $menu->description,
+        //                         'price' => $menu->price,
+        //                         'image' => asset('/images/menus/' . $menu->image),
+        //                     ];
+        //                 }),               
+        // ]);
     }
 
     /**
@@ -71,29 +103,6 @@ class MenusController extends Controller
         $menu->image = $file;
 
         $menu->save();
-
-
-
-        // The original codes
-    //     $file = $request->file('image')->store('menus', 'public');
-
-    //     $request->validate([
-    //         'category_id' => 'required|integer',
-    //         'name' => 'required|string|max:255',
-    //         'slug' => 'required|string|max:255',
-    //         'description' => 'required',
-    //         'price' => 'required|integer|numeric',
-    //         'image' => 'required|mimes:jpg,jpeg,png|max:2048',
-    //     ]);
-
-    //    Menu::create([
-    //         'category_id' => $request->get('category_id'),
-    //         'name' => $request->get('name'),
-    //         'slug' => $request->get('slug'),
-    //         'description' => $request->get('description'),
-    //         'price' => $request->get('price'),
-    //         'image' => $file,
-    //     ]);
 
         return to_route('menus-list.index');
     }
@@ -146,34 +155,6 @@ class MenusController extends Controller
         $menu->price = $request->get('price');
 
         $menu->update();
-        
-        
-        
-        // former code
-        // $image = $menu->image;
-
-        // $request->validate([
-        //     'name' => 'required|string|max:255',
-        //     'category_id' => 'required|integer',
-        //     'slug' => 'required|string|max:255',
-        //     'description' => 'required',
-        //     'price' => 'required|integer|numeric',
-        // ]);
-
-        // if ($request->file('image')) {
-        //     $request->validate(['image' => 'required|mimes:jpg,jpeg,png|max:2048',]);
-        //     Storage::delete('public/' .$menu->image);
-        //     $image = $request->file('image')->store('menus', 'public');
-        // }
-
-        // $menu->update([
-        //     'category_id' => $request->category_id,
-        //     'name' => $request->name,
-        //     'slug' => $request->slug,
-        //     'description' => $request->description,
-        //     'price' => $request->price,
-        //     'image' => $image,
-        // ]);
 
         return to_route('menus-list.index');
     }
@@ -181,13 +162,17 @@ class MenusController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Menu $menu): RedirectResponse
+    public function destroy(int $id): RedirectResponse
     {
-        Storage::delete('public/' .$menu->image);
+        try {
+            $menu = Menu::find($id);
+            Storage::delete('public/' .$menu->image);
+            $menu->delete();
 
-        if($menu->delete()) {
-
-            return to_route('menus-list.index');
+                return to_route('menus-list.index');
+        
+        } catch (\Exception $e) {
+            return response()->json($e->getMessage());
         }
     }
 }
