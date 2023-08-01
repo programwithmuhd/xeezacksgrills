@@ -40,33 +40,6 @@ const cartTotal = computed(() => {
     }, 0);
 });
 
-
-
-
-// const updateFromCart = (id) => {
-//     cartStore.updateMenuFromCart(id)
-// }
-
-// const removeFromCart = (id) => {
-//     cartStore.removeMenuFromCart(id)
-// }
-
-// const total = computed(() => {
-//     let total = 0
-//     cart.value.forEach(c => {
-//         total += c.price
-//     })
-//     if (total > 0) {
-//         return total.toFixed(2)
-//     }
-//     return 0
-// })
-
-// const totalWithoutDot = () => {
-//     let num = String(total.value).split('.').join('')
-//     return Number(num)
-// }
-
 </script>
 
 <template>

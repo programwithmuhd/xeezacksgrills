@@ -36,6 +36,7 @@ Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.in
 Route::post('/checkout', [CheckoutController::class, 'initiate'])->name('checkout.initiate');
 Route::get('/verify', [CheckoutController::class, 'paymentCallBack'])->name('checkout.callback');
 Route::get('/contact', function() {return Inertia::render('Contact');})->name('contact.index');
+Route::get('/reservation', function() {return Inertia::render('Reservation');})->name('reservation.index');
 
 // Dashboard layout pages
 Route::get('/address', [AddressController::class, 'index'])->middleware(['auth', 'verified'])
@@ -88,8 +89,6 @@ Route::delete('/categories-favorites/{category}', [CategoriesController::class, 
     // Route address
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
-
-
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

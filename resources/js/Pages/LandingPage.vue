@@ -7,17 +7,6 @@ import TextInput from '@/Components/TextInput.vue';
 import TextArea from '@/Components/TextArea.vue';
 import { Head, Link, useForm } from '@inertiajs/vue3';
 
-const form = useForm({
-    grilled_meat: null,
-    grilled_chicken: null,
-    tea_cups: null,
-    comments: '',
-});
-
-const submit = () => {
-    form.post(route('landing-page.store'));
-};
-
 </script>
 
 <template>
@@ -118,48 +107,12 @@ const submit = () => {
         </div>
 
         <div class="w-full mx-auto bg-white">
-            <div class="max-w-5xl mx-auto px-6">
+                <div class="max-w-5xl mx-auto px-6">
                 <div class="text-5xl font-bold text-gray-900 text-center py-4">Reservation</div>
                 <div class="text-lg text-gray-900 text-center py-4">Please reserve your table to enable us serve you better!
                 </div>
-                <div class="max-w-xl mx-auto mb-8">
-                    <form @submit.prevent="submit" class="max-w-full mx-auto">
-                        <div class="mt-4">
-                            <InputLabel for="Grilled Meat" value="Grilled Meat" />
-
-                            <TextInput id="grilled_meat" type="number" min="1" class="mt-1 block w-full" v-model="form.grilled_meat"
-                                required autocomplete="Grilled Meat" />
-
-                            <InputError class="mt-2" :message="form.errors.grilled_meat" />
-                        </div>
-
-                        <div class="mt-4">
-                            <InputLabel value="Grilled Chicken" />
-
-                            <TextInput type="number" min="1" class="mt-1 block w-full" v-model="form.grilled_chicken" required
-                                autocomplete="grilled_chicken" />
-
-                            <InputError class="mt-2" :message="form.errors.grilled_chicken" />
-                        </div>
-                        <div class="mt-4">
-                            <InputLabel value="Tea" />
-
-                            <TextInput type="number" min="1" class="mt-1 block w-full" v-model="form.tea_cups" required
-                                autocomplete="tea_cups" />
-
-                            <InputError class="mt-2" :message="form.errors.tea_cups" />
-                        </div>
-                        <div class="py-4">
-                            <InputLabel class="" value="Additional Comment" />
-                            <TextArea v-model="form.comments" type="text" class="mt-1 block w-full" required />
-                        </div>
-                        <div class="py-4">
-                            <button
-                            class="w-full bg-yellow-400 px-3 py-3 font-bold text-lg rounded-lg shadow-sm cursor-pointer">
-                            Book Table
-                        </button>
-                    </div>
-                    </form>
+                <div class="max-w-xl mx-auto text-center mb-8">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione at officia, iure beatae voluptatem possimus aut perferendis quod deleniti optio, id nihil, deserunt nulla ullam rerum explicabo temporibus numquam cumque?
                 </div>
                 <div class="text-xl font-medium text-gray-900 text-center py-4">Call Us For Reservations!</div>
                 <div class="text-5xl font-bold text-gray-900 text-center py-4">07038989839</div>

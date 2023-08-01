@@ -44,8 +44,8 @@ const total = computed(() => {
 
 
 const form = reactive({
-    phone: usePage().props.auth.user.phone,
     email: usePage().props.auth.user.email,
+    phone: usePage().props.auth.user.phone,
     amount: total,
 });
 
@@ -67,7 +67,6 @@ let submit = () => {
         
         <Head title="Checkout" />
         <div class="w-full bg-gray-200">
-            {{ $page.props.auth.user }}
             <div class="max-w-7xl bg-gray mx-auto">
                 <div class="flex flex-col sm:flex-col lg:flex-row p-6 gap-4">
                     <div class="w-full lg:w-3/5">
