@@ -55,8 +55,8 @@ Route::get('/add-address', [AddressController::class, 'create'])
 Route::post('/add-address', [AddressController::class, 'store'])
     ->name('address.store');
 
-Route::middleware('auth')->group(function () {
-
+Route::middleware(['auth', 'role:admin'])->group(function () {
+// auth()->user()->assignRole('admin');
 Route::get('/users', [UserController::class, 'index'])->name('users.index');
 Route::get('/users/create', [UserController::class, 'create'])->name('users.create');
 Route::post('/users', [UserController::class, 'store'])->name('users.store');

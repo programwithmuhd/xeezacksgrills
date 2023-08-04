@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\User;
 use App\Models\Address;
 use App\Models\Category;
 use App\Models\Menu;
@@ -36,6 +37,10 @@ class HandleInertiaRequests extends Middleware
         return array_merge(parent::share($request), [
             'auth' => [
                 'user' => auth()->check() ? auth()->user() : null,
+                'is_admin' => $request->user() ? $request->user()->hasRole('admin') : false,
+                // 'auth.user.roles' => fn () => $request->user()
+                // ? $request->user()->getRoleNames()
+                // : null,
                 'address' => auth()->check() ? Address::where('user_id', auth()->user()->id)->first() : null,
             ],
             'category_menus' => Category::all(),
