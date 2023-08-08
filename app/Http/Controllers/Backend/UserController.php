@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Request;
 use Illuminate\Http\RedirectResponse;
 use Inertia\Inertia;
 
@@ -16,7 +16,17 @@ class UserController extends Controller
     public function index()
     {
         return Inertia::render('Users/UsersIndex', [
-            'users' => User::all()
+            'users' => User::query()
+                    ->when(Request::input('search'), function($query, $search){
+                        $query->where('first_name', 'LIKE', "%{$search}%")
+                        ->orWhere('last_name', 'LIKE', "%{$search}%")
+                        ->orWhere('email', 'LIKE', "%{$search}%")
+                        ->orWhere('phone', 'LIKE', "%{$search}%");
+                    })->when(Request::has('field'), function($query) {
+                        $query->orderBy(Request::input('field'), Request::input('direction'));
+                    })
+                    ->paginate(10)->withQueryString(),
+            'filters' => Request::only(['search', 'field', 'direction'])
         ]);
     }
 

@@ -4,7 +4,10 @@ import { usePage, Link } from '@inertiajs/vue3';
 import SideNavItem from '../Components/SideNavItem.vue'
 import MenuIcon from 'vue-material-design-icons/Menu.vue';
 import MagnifyIcon from 'vue-material-design-icons/Magnify.vue';
+import AccountLockOpen from 'vue-material-design-icons/AccountLockOpen.vue';
+import Logout from 'vue-material-design-icons/Logout.vue';
 
+let showMenu = ref(false);
 let openSideNav = ref(true);
 let openSideNavOverlay = ref(false);
 let sideNavOverlay = ref(null);
@@ -48,41 +51,46 @@ const isNavOverlay = () => {
                 <div class="mx-2"></div>
                 <Link :href="route('landing-page.index')" class="flex items-center justify-center mr-10 cursor-pointer">
                 <img class="" width="80" height="120" src="/images/logos/footer-logo.jpg" alt="">
-                <h2 class="text-xl font-medium text-black">Dashboard</h2>
+                <h2 class="hidden md:block text-xl font-medium text-black">Dashboard</h2>
                 </Link>
             </div>
 
-            <!-- <div class="w-[600px] md:block hidden">
-                <div class="rounded-full flex items-center bg-yellow-400 ">
-                    <input type="text" class="
-                                        form-control
-                                        block
-                                        w-full
-                                        px-5
-                                        py-1.5
-                                        text-base
-                                        font-normal
-                                        text-gray-200
-                                        bg-[#F4E3B4]
-                                    placeholder-gray-400
-                                    bg-clip-padding
-                                    border
-                                    border-solid
-                                    border-l-gray-700
-                                    border-y-gray-700
-                                    rounded-l-full
-                                    transition
-                                    ease-in-out
-                                    m-0
-                                    border-transparent
-                                    focus:ring-0
-                                " placeholder="Search" />
-                    <MagnifyIcon class="mx-6" fillColor="black" :size="23" />
+            <div class="flex items-center z-30 px-6">
+                    <Icon class="ml-1 mr-4" name="carbon:send-alt" color="#161724" size="24" />
+                    <Icon class="mr-5" name="bx:message-detail" color="#161724" size="24" />
+                    <div class="relative">
+                        <button 
+                        class="mt-1"
+                        @click="showMenu = !showMenu"
+                        >
+                            <img
+                                class="rounded-full"
+                                width="33"
+                                src="https://picsum.photos/id/83/300/320"
+                             />
+                        </button>
+
+                        <div
+                            v-if="showMenu"
+                            id="PopMenu"
+                            class="absolute bg-white rounded-lg py-1.5 w-[200px] shadow-xl border top-[43px] -right-2"
+                        >
+                            <NuxtLink
+                            @click="showMenu = false"
+                            class="flex items-center justify-start py-3 px-2 hover:bg-gray-100 cursor-pointer"
+                            >
+                                <AccountLockOpen size="20" />
+                                <span class="pl-2 font-semibold text-sm">Profile</span>
+                            </NuxtLink>
+                            <div
+                            class="flex items-center justify-start py-3 px-1.5 hover:bg-gray-100 border-t cursor-pointer"
+                            >
+                                <Logout size="20" />
+                                <Link :href="route('logout')" method="post" as="button" class="pl-2 font-semibold text-sm">Log out</Link>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div> -->
-            <div>
-                <img class="rounded-full mx-8" width="80" height="120" src="/images/logos/footer-logo.jpg">
-            </div>
         </div>
 
 

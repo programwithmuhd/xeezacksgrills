@@ -86,27 +86,27 @@ export default {
             <div class="sm:w-full md:w-[300px]">
                 <div class="rounded-full flex items-center justify-end bg-yellow-400">
                     <input v-model="params.search" type="text" class="
-                                            form-control
-                                            block
-                                            w-full
-                                            px-5
-                                            py-1.5
-                                            text-base
-                                            font-normal
-                                            text-gray-900
-                                            bg-[#F4E3B4]
-                                        placeholder-gray-400
-                                        bg-clip-padding
-                                        border
-                                        border-solid
-                                        border-l-gray-700
-                                        border-y-gray-700 rounded-full
-                                        transition
-                                        ease-in-out
-                                        m-0
-                                        border-transparent
-                                        focus:ring-0
-                                    " placeholder="Search" />
+                            form-control
+                            block
+                            w-full
+                            px-5
+                            py-1.5
+                            text-base
+                            font-normal
+                            text-gray-900
+                            bg-[#F4E3B4]
+                        placeholder-gray-400
+                        bg-clip-padding
+                        border
+                        border-solid
+                        border-l-gray-700
+                        border-y-gray-700 rounded-full
+                        transition
+                        ease-in-out
+                        m-0
+                        border-transparent
+                        focus:ring-0
+                    " placeholder="Search" />
                 </div>
             </div>
 

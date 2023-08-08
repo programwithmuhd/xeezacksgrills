@@ -14,25 +14,21 @@ import { Head, Link, useForm } from '@inertiajs/vue3';
 
     <XeezacksgrillLayout>
         <Slider />
-        <div class="w-full max-w-[7xl] bg-white mx-auto">
-            <div class="flex flex-col items-center lg:flex-row justify-between gap-10">
-                <div id="left-section" class="w-full p-16 lg:w-5/12">
-                    <div class="">
-                        <h2 class="md:text-5xl text-3xl font-black text-gray-900 leading-tight">
-                            Discover the Good Atmosphere of Xeezacks
+        <div class="w-full bg-white">
+            <div class="max-w-7xl mx-auto flex flex-col items-center lg:flex-row justify-between gap-40">
+                <div class="py-4 sm:w-1/12 px-4 lg:w-5/12">
+                    <h2 class="text-5xl font-medium text-gray-900 leading-none">Discover the Good Atmosphere of Xeezacks
                         Grill House</h2>
-                    </div>
-
                     <div class="py-4 text-lg text-gray-900">Lorem, ipsum dolor sit amet consectetur adipisicing elit.
                         Impedit ipsam nemo vitae exercitationem laudantium? Ipsum.</div>
+
                     <div class="py-4 text-lg text-gray-900">The best turkish grill in kaduna state is here.</div>
 
                     <div class="aspect-w-9 aspect-h-5">
                         <iframe width="560" height="315" src="https://www.youtube.com/embed/g-cPBUoBRjI"
                             title="YouTube video player" frameborder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                            allowfullscreen>
-                        </iframe>
+                            allowfullscreen></iframe>
                     </div>
 
                     <div class="py-4 text-xl font-bold text-gray-900">Good vibes</div>
@@ -41,26 +37,22 @@ import { Head, Link, useForm } from '@inertiajs/vue3';
                     <div>
                         <img src="/images/logos/dish-1-.png" alt="">
                     </div>
+                </div>
+                <div class="mt-24 py-4 sm:5-1/12 px-4 lg:w-5/12">
+                    <div class="mt-2">
+                        <img src="/images/pages/whatsapp-image.jpeg" alt="">
                     </div>
-                <div id="right-section" class="w-full p-16 lg:w-5/12">
-                    <div class="">
-                        <img class="" src="/images/pages/whatsapp-image.jpeg" alt="">
-                    </div>
-
                     <div class="py-2 text-xl font-bold text-gray-900">Cozy place</div>
-
                     <div class="py-2 text-lg text-gray-900">We are proud to serve you one of the healthiest and most
-                        well-balanced Turkish and Mediterranean Halal food in the heart of kaduna city
-                    </div>
+                        well-balanced Turkish and Mediterranean Halal food in the heart of kaduna city</div>
 
                     <div class="pt-8">
                         <img src="/images/pages/whatsapp-image2.jpeg" alt="">
                     </div>
-
                     <div class="py-2 text-xl font-bold text-gray-900">Relax atmosphere</div>
                     <div class="text-lg text-gray-900">We are proud to serve you one of the healthiest and most
-                        well-balanced Turkish and Mediterranean Halal food in the heart of kaduna city
-                    </div>
+                        well-balanced Turkish and Mediterranean Halal food in the heart of kaduna city</div>
+
                 </div>
             </div>
         </div>
@@ -117,7 +109,7 @@ import { Head, Link, useForm } from '@inertiajs/vue3';
 
         <div class="w-full mx-auto bg-white">
             <div class="max-w-5xl mx-auto px-6">
-                <div class="md:text-5xl text-3xl font-bold text-gray-900 text-center py-4">Reservation</div>
+                <div class="text-5xl font-bold text-gray-900 text-center py-4">Reservation</div>
                 <div class="text-lg text-gray-900 text-center py-4">Please reserve your table to enable us serve you better!
                 </div>
                 <div class="max-w-xl mx-auto text-center mb-8">
@@ -126,7 +118,7 @@ import { Head, Link, useForm } from '@inertiajs/vue3';
                     numquam cumque?
                 </div>
                 <div class="text-xl font-medium text-gray-900 text-center py-4">Call Us For Reservations!</div>
-                <div class="md:text-5xl text-3xl font-bold text-gray-900 text-center py-4">07038989839</div>
+                <div class="text-5xl font-bold text-gray-900 text-center py-4">07038989839</div>
             </div>
         </div>
     </XeezacksgrillLayout></template>

@@ -8,11 +8,7 @@ import ResponsiveNavLink from '@/Components/ResponsiveNavLink.vue';
 import { Link, usePage } from '@inertiajs/vue3';
 import CartMinusIcon from 'vue-material-design-icons/CartMinus.vue';
 import CartIcon from 'vue-material-design-icons/Cart.vue';
-import PhoneIcon from 'vue-material-design-icons/Phone.vue';
-import ClockIcon from 'vue-material-design-icons/ClockTimeEightOutline.vue';
 import AccountLockOpen from 'vue-material-design-icons/AccountLockOpen.vue';
-import FacebookIcon from 'vue-material-design-icons/Facebook.vue';
-import InstagramIcon from 'vue-material-design-icons/Instagram.vue';
 import MenuIcon from 'vue-material-design-icons/Menu.vue';
 import AccountCircleIcon from 'vue-material-design-icons/AccountCircle.vue';
 import CloseIcon from 'vue-material-design-icons/Close.vue';
@@ -78,7 +74,7 @@ const search = debounce(async (term) => {
         <div v-if="accountAndList" class="top-0 z-20 fixed w-full h-full bg-black bg-opacity-70"></div>
         <!-- {{ $page.props.auth.user }} -->
         <div class="w-full bg-[#F4E3B4]">
-            <div class="min-h-[1.5rem]">
+            <div class="h-6">
                 <div class="flex justify-end items-center gap-4 px-6 py-4">
                     <div class="block sm:block md:hidden mobile-menu absolute top-2 left-4">
                         <svg @click="showMenu = !showMenu" class="w-10 h-14 cursor-pointer text-lg text-bold text-black"
@@ -158,7 +154,7 @@ const search = debounce(async (term) => {
                     </div>
                 </div>
             </div>
-            <nav class="w-full mx-auto bg-[#F4E3B4] flex flex-col items-center gap-5 lg:flex-row justify-between px-6 -mt-8">
+            <nav class="w-full mx-auto bg-[#F4E3B4] flex flex-col items-center gap-5 lg:flex-row justify-between px-6 py-0">
                 <!-- Logo -->
                 <div class="object-contain logo mb-2">
                     <a class="" href="/">
@@ -170,14 +166,14 @@ const search = debounce(async (term) => {
                 <div class="flex flex-col items-center gap-5 lg:flex-row justify-between px-6">
                     <div class="relative w-full">
                         <input @input="(e) => search(e.target.value)"
-                            class="min-w-[300px] w-full border-[#F4E3B4] bg-white focus:border-yellow-400 focus:ring-yellow-400 rounded-full shadow-sm"
+                            class="min-w-[300px] w-full px-6 border-[#F4E3B4] bg-white focus:border-yellow-400 focus:ring-yellow-400 rounded-full shadow-sm"
                             type="search" name="">
-                        <div v-if="results.length > 0 && !isLoading" class="absolute z-10 w-full">
+                        <div v-if="results.length > 0 && !isLoading" class="absolute z-10 w-full p-1">
                             <template v-for="menu in results" :key="menu.id">
                                 <div class="border border-gray-400 w-full cursor-pointer text-black bg-white">
                                     <Link :href="menu.url">
-                                    <div class="flex items-center hover:bg-[#F4E3B4] py-3 px-2.5">
-                                        <div class="text-clip text-lg font-semibold text-gray-900 hover:text-black">{{ menu.title }}</div>
+                                    <div class="flex items-center py-4 px-2">
+                                        <div class="text-clip text-gray-900 ml-2">{{ menu.title }}</div>
                                     </div>
                                     </Link>
                                 </div>
@@ -226,32 +222,18 @@ const search = debounce(async (term) => {
         <div class="bg-white w-full">
             <slot />
         </div>
-        <div class="w-full bg-[#F4E3B4]">
+        <div class="w-full py-8 bg-[#F4E3B4]">
             <div class="container mx-auto flex flex-col flex-auto lg:flex-row justify-between px-6 py-6">
-                <div class="py-6">
-                    <Link :href="route('landing-page.index')">
-                        <img class="w-64" src="/images/logos/footer-logo.jpg" alt="" srcset="">
-                    </Link>
+                <div>
+                    <img class="w-64" src="/images/logos/footer-logo.jpg" alt="" srcset="">
                 </div>
-                <div class="py-6">
+                <div>
                     <div class="text-3xl font-semibold text-gray-900">
                         Our Location
-                        <p class="text-xl font-semibold text-gray-900 py-2">Unguwar Rimin Kaduna</p>
-                    </div>
-                    <div class="flex items-center py-2">
-                        <PhoneIcon size="25" />
-                        <p class="text-[1.27rem] font-semibold text-gray-900 pl-2">07038989839</p>
-                    </div>
-                    <div class="flex items-start gap-5 py-2">
-                        <Link :href="route('landing-page.index')">
-                            <FacebookIcon size="27"/>
-                        </Link>
-                        <Link :href="route('landing-page.index')">
-                            <InstagramIcon size="25"/>
-                        </Link>
+                        <p class="text-xl font-semibold text-gray-900">Unguwar Rimin Kaduna</p>
                     </div>
                 </div>
-                <div class="py-6">
+                <div>
                     <div class="text-3xl font-semibold text-gray-900">
                         Quick Links
                         <div class="">
@@ -269,25 +251,10 @@ const search = debounce(async (term) => {
                         </div>
                     </div>
                 </div>
-                <div class="py-6">
-                    <div class="text-3xl font-semibold text-gray-900 pb-3">
+                <div>
+                    <div class="text-3xl font-semibold text-gray-900">
                         Opening hours
-                    </div>
-                    <div class="">
-                        <div class="flex items-start pb-2">
-                            <ClockIcon size="25" />
-                            <div class="pl-2">
-                                <p class="text-lg font-semibold text-gray-900">Monday-Friday</p>
-                                <p class="text-lg font-semibold text-gray-900">11am - 11:30pm</p>
-                            </div>
-                        </div>
-                        <div class="flex items-start">
-                            <ClockIcon size="25" />
-                            <div class="pl-2">
-                                <p class="text-lg font-semibold text-gray-900">Saturday-Sunday</p>
-                                <p class="text-lg font-semibold text-gray-900">11am - 11:30pm</p>
-                            </div>
-                        </div>
+                        <p class="text-xl font-semibold text-gray-900">Monday-Friday</p>
                     </div>
                 </div>
             </div>

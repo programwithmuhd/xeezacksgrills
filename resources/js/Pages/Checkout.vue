@@ -122,16 +122,16 @@ let submit = () => {
                                     <div class="text-gray-900 text-2xl font-black">NGN{{ total }}</div>
                                 </div>
                                 <form @submit.prevent="submit">
-                                    <div class="py-4">
+                                    <div class="">
                                         <TextInput v-model="form.phone" type="hidden" class="mt-1 block w-full" required />
                                     </div>
-                                    <div class="py-4">
+                                    <div class="">
                                         <TextInput v-model="form.email" type="hidden" class="mt-1 block w-full" required />
                                     </div>
-                                    <div class="py-4">
+                                    <div class="">
                                         <TextInput v-model="form.amount" type="hidden" class="mt-1 block w-full" required />
                                     </div>
-                                    <div class="mt-2">
+                                    <div class="py-4">
                                         <button type="submit" class="
                                                 bg-yellow-400
                                                 block

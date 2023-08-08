@@ -1,20 +1,40 @@
 <template>
-    <div>
-        <component
-        :is="Link.url ? 'Link' : 'span'"
-        v-for="Link in Links"
-        :href="Link.url"
-        v-html="Link.label"
-        class="px-1"
-        :class="{ 'text-gray-500': ! Link.url, 'font-bold': Link.active }"
+<div class="flex">
+    <template v-for="(link, key) in Links" :key="key">
+        <div
+            class="mb-1 mr-1 px-4 py-3 text-gray-900 text-sm leading-4 border rounded" 
+            v-if="link.url === null" 
+            v-html="link.label"
+         />
+        <Link
+            class="
+                    mb-1 
+                    mr-1 
+                    px-4 
+                    py-3 
+                    text-gray-900 
+                    text-sm 
+                    leading-4 
+                    border 
+                    rounded 
+                    focus:text-black 
+                    focus:border-black 
+                    hover:bg-white"
+            :class="{ 'bg-yellow-400' : link.active} "
+            v-else 
+            :href="link.url" 
+            v-html="link.label"
         />
-    </div>
+    </template>
+</div>
 </template>
 
-<script>
-    export default {
-        props: {
-            Links: Array
-        }
-    }
+<script setup>
+import { Head, Link, useForm } from '@inertiajs/vue3';
+import DashboardLayout from '@/Layouts/DashboardLayout.vue';
+import { ref } from 'vue';
+
+defineProps({
+    Links: Array
+})
 </script>
