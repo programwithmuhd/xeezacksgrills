@@ -68,15 +68,18 @@ import { toRefs, computed } from 'vue'
                                     08036854530
                                 </td>
                                 <td class="p-3 text-center text-xl text-gray-700 whitespace-nowrap">
-                                    <button type="submit" class="text-sm md:text-sm text-white rounded-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 bg-green-500 hover:bg-green-600 px-8 py-2">Update</button>
+                                    <button type="submit"
+                                        class="text-sm md:text-sm text-white rounded-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 bg-green-500 hover:bg-green-600 px-8 py-2">Update</button>
                                 </td>
                                 <td class="p-3 text-center text-xl text-gray-700 whitespace-nowrap">
-                                    <button type="submit" class="text-sm md:text-sm text-white rounded-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 bg-red-500 hover:bg-red-600 px-8 py-2">Delete</button>
+                                    <button type="submit"
+                                        class="text-sm md:text-sm text-white rounded-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 bg-red-500 hover:bg-red-600 px-8 py-2">Delete</button>
                                 </td>
                             </tr>
                         </tbody>
                     </table>
+                </div>
             </div>
         </div>
-    </div>
-</DashboardLayout></template>
+    </DashboardLayout>
+</template>

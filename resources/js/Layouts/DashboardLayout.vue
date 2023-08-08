@@ -171,7 +171,7 @@ const isNavOverlay = () => {
             'w-[100vw] xl:w-[calc(100%-80px)]': $page.url !== usePage().url,
             'w-[100vw]': width < 639
         }">
-            <div class="h-screen bg-white">
+            <div class="h-screen bg-gray-200">
                 <slot />
             </div>
         </div>
