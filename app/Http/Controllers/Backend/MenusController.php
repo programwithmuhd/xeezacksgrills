@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Models\Menu;
 use Inertia\Inertia;
 use Inertia\Response;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Request;
 use PhpParser\Node\Stmt\Return_;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
@@ -20,53 +20,26 @@ class MenusController extends Controller
      */
     public function index()
     {
-        request()->validate([
-            'direction' => ['in:asc,desc'],
-            'field' => ['in:name,slug'],
-        ]);
-        $query = Menu::query();
-       
-        if(request('search')) {
-            $query->where('name', 'LIKE', '%'. request('search') . '%');
-        } 
-
-        if(request()->has(['field', 'direction'])) {
-            $query->orderBy(request('field'), request('direction'));
-        }
-
         return Inertia::render('Menus/MenuIndex', [
-            'menus' => $query->paginate(10)
-                            ->through(function ($menu) {
-                                return [
-                                    'id' => $menu->id,
-                                    'category_id' => $menu->category_id,
-                                    'name' => $menu->name,
-                                    'slug' => $menu->slug,
-                                    'description' => $menu->description,
-                                    'price' => $menu->price,
-                                    'image' => asset('/images/menus/' . $menu->image),
-                                ];
-                            }),
-            'filters' => request()->all(['search', 'field', 'direction'])
-            // 'categories' => Category::all()
+            'menus' => Menu::query()
+                ->when(Request::input('search'), function ($query, $search) {
+                    $query->where('name', 'LIKE', "%{$search}%");
+                })->when(Request::has('field'), function ($query) {
+                    $query->orderBy(Request::input('field'), Request::input('direction'));
+                })
+                ->paginate(10)->withQueryString()->through(function($menu) {
+                    return [
+                        'id' => $menu->id,
+                        'category_id' => $menu->category_id,
+                        'name' => $menu->name,
+                        'slug' => $menu->slug,
+                        'description' => $menu->description,
+                        'price' => $menu->price,
+                        'image' => asset('/images/menus/' . $menu->image),
+                    ];
+                }),
+            'filters' => Request::only(['search', 'field', 'direction'])
         ]);
-
-
-        // return Inertia::render('Menus/Index', [
-        //     'menus' => Menu::orderBy('created_at', 'desc')
-        //                 ->get()
-        //                 ->map(function ($menu) {
-        //                     return [
-        //                         'id' => $menu->id,
-        //                         // 'category_id' => $menu->category_id,
-        //                         'name' => $menu->name,
-        //                         'slug' => $menu->slug,
-        //                         'description' => $menu->description,
-        //                         'price' => $menu->price,
-        //                         'image' => asset('/images/menus/' . $menu->image),
-        //                     ];
-        //                 }),               
-        // ]);
     }
 
     /**

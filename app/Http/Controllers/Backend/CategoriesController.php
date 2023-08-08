@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Request;
 use Inertia\Inertia;
 use App\Models\Category;
 use Illuminate\Http\RedirectResponse;
@@ -15,24 +15,15 @@ class CategoriesController extends Controller
      */
     public function index()
     {
-        request()->validate([
-            'direction' => ['in:asc,desc'],
-            'field' => ['in:name,slug'],
-        ]);
-        $query = Category::query();
-       
-        if(request('search')) {
-            $query->where('name', 'LIKE', '%'. request('search') . '%');
-        } 
-
-        if(request()->has(['field', 'direction'])) {
-            $query->orderBy(request('field'), request('direction'));
-        }
-
-        return Inertia::render('Categories/Index', [
-            'categories' => $query->paginate(10),
-            'filters' => request()->all(['search', 'field', 'direction'])
-            // 'categories' => Category::all()
+        return Inertia::render('Categories/CategoryIndex', [
+            'categories' => Category::query()
+                ->when(Request::input('search'), function ($query, $search) {
+                    $query->where('name', 'LIKE', "%{$search}%");
+                })->when(Request::has('field'), function ($query) {
+                    $query->orderBy(Request::input('field'), Request::input('direction'));
+                })
+                ->paginate(10)->withQueryString(),
+            'filters' => Request::only(['search', 'field', 'direction'])
         ]);
     }
 

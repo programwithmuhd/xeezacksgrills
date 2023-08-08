@@ -78,6 +78,7 @@ Route::delete('/categories-favorites/{category}', [CategoriesController::class, 
     ->name('categories-favorites.destroy');
 
     Route::get('/menus-list', [MenusController::class, 'index'])->name('menus-list.index');
+    Route::get('/menus-list/create', [MenusController::class, 'index'])->name('menus-list.create');
     Route::post('/menus-list', [MenusController::class, 'store'])->name('menus-list.store');
     Route::get('/menus-list/{menu}/edit', [MenusController::class, 'edit'])
         ->name('menus-list.edit');
