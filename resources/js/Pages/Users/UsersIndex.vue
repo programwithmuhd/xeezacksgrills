@@ -115,7 +115,7 @@ const deleteUser = (id) => {
                             <tr class="">
                                 <th @click="sort('first_name')"
                                     class="w-25 p-3 text-xl font-semibold tracking-wide text-center cursor-pointer">
-                                    <div class="flex space-x-4 content-center">
+                                    <div class="flex justify-center space-x-4 content-center">
                                         <span>Name</span>
                                         <svg v-if="userFilters.field === 'first_name' && userFilters.direction === 'desc'"
                                             xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -134,7 +134,7 @@ const deleteUser = (id) => {
                                 </th>
                                 <th @click="sort('last_name')"
                                     class="w-25 p-3 text-xl font-semibold tracking-wide text-center cursor-pointer">
-                                    <div class="flex space-x-4 content-center">
+                                    <div class="flex justify-center space-x-4 content-center">
                                         <span>Surname</span>
                                         <svg v-if="userFilters.field === 'last_name' && userFilters.direction === 'desc'"
                                             xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"

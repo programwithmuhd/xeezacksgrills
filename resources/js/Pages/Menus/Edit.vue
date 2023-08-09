@@ -9,6 +9,7 @@ import Modal from '@/Components/Modal.vue';
 import DangerButton from '@/Components/DangerButton.vue';
 import SecondaryButton from '@/Components/SecondaryButton.vue';
 import ArrowLeftIcon from 'vue-material-design-icons/ArrowLeft.vue';
+import TrashIcon from 'vue-material-design-icons/Delete.vue';
 
 const props = defineProps({ menu: Object, image: String })
 
@@ -65,6 +66,23 @@ const deleteMenu = (id) => {
         <div class="bg-gray-200 px-6 pt-16 pb-8">
 
             <div class="bg-white sm:max-w-full md:max-w-4xl mx-auto px-6 py-8">
+                <div class="flex justify-end">
+                    <div class="-mt-4">
+                        <TrashIcon class="cursor-pointer text-red-600" @click="confirmDeleteMenu" size="46" />
+                        <Modal :show="showConfirmDeleteMenuModal" @close="closeModal">
+                            <div class="p-6">
+                                <h2 class="text-lg font-semibold text-slate-800">Are you sure you want delete this
+                                    favourite?</h2>
+                                <div class="mt-6 flex space-x-4">
+                                    <DangerButton @click="deleteMenu(menu.id)">Delete
+                                    </DangerButton>
+                                    <SecondaryButton @click="closeModal">Cancel</SecondaryButton>
+                                </div>
+                            </div>
+                        </Modal>
+
+                    </div>
+                </div>
                 <div class="flex-col sm:flex-col md:flex-row flex justify-between gap-10">
                     <form class="mx-auto" @submit.prevent="updateMenu">
                         <div class="py-4 w-full">
@@ -106,49 +124,12 @@ const deleteMenu = (id) => {
                                 <img :src="image" alt="">
                             </div>
                         </div>
-                        <div class="flex items-center justify-between gap-5">
+                        <div class="text-center">
                             <div class="py-4">
                                 <button type="submit.prevent"
                                     class="inline-flex items-center px-4 py-2 bg-green-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-green-500 active:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition ease-in-out duration-150">
                                     Update Menu
                                 </button>
-                            </div>
-                            <div class="py-4">
-                                <button type="submit" @click="confirmDeleteMenu" 
-                                    class="inline-flex 
-                                    items-center 
-                                    px-4 
-                                    py-2 
-                                    bg-red-600 
-                                    border 
-                                    border-transparent 
-                                    rounded-md font-semibold 
-                                    text-xs 
-                                    text-white 
-                                    uppercase 
-                                    tracking-widest 
-                                    hover:bg-red-500 
-                                    active:bg-red-700 
-                                    focus:outline-none 
-                                    focus:ring-2 
-                                    focus:ring-red-500 
-                                    focus:ring-offset-2 
-                                    transition 
-                                    ease-in-out 
-                                    duration-150
-                                    "
-                                    >Delete
-                                </button>
-                                <Modal :show="showConfirmDeleteMenuModal" @close="closeModal">
-                                    <div class="p-6">
-                                        <h2 class="text-lg font-semibold text-slate-800">Are you sure you want delete this favourite?</h2>
-                                        <div class="mt-6 flex space-x-4">
-                                            <DangerButton @click="deleteMenu(route('menus-list.destroy', { id: menu.id }))">Delete</DangerButton>
-                                            <SecondaryButton @click="closeModal">Cancel</SecondaryButton>
-                                        </div>
-                                    </div>
-                                </Modal>
-                                
                             </div>
                         </div>
                     </form>
@@ -156,4 +137,4 @@ const deleteMenu = (id) => {
             </div>
         </div>
     </DashboardLayout>
-</template>
+    </template>

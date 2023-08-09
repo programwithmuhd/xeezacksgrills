@@ -1,6 +1,8 @@
 import './bootstrap';
 import '../css/app.css';
 import 'animate.css';
+import VueSweetalert2 from 'vue-sweetalert2';
+import 'sweetalert2/dist/sweetalert2.min.css';
 
 import { createPinia } from 'pinia'
 import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
@@ -21,6 +23,7 @@ createInertiaApp({
     setup({ el, App, props, plugin }) {
         return createApp({ render: () => h(App, props) })
             .use(pinia)
+            .use(VueSweetalert2)
             .use(plugin)
             .use(plugin)
             .use(ZiggyVue, Ziggy)

@@ -5,7 +5,8 @@ namespace App\Http\Controllers\Backend;
 use App\Models\Menu;
 use Inertia\Inertia;
 use Inertia\Response;
-use Illuminate\Support\Facades\Request;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Request as RequestFacade;
 use PhpParser\Node\Stmt\Return_;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
@@ -22,10 +23,10 @@ class MenusController extends Controller
     {
         return Inertia::render('Menus/MenuIndex', [
             'menus' => Menu::query()
-                ->when(Request::input('search'), function ($query, $search) {
+                ->when(RequestFacade::input('search'), function ($query, $search) {
                     $query->where('name', 'LIKE', "%{$search}%");
-                })->when(Request::has('field'), function ($query) {
-                    $query->orderBy(Request::input('field'), Request::input('direction'));
+                })->when(RequestFacade::has('field'), function ($query) {
+                    $query->orderBy(RequestFacade::input('field'), RequestFacade::input('direction'));
                 })
                 ->paginate(10)->withQueryString()->through(function($menu) {
                     return [
@@ -38,7 +39,7 @@ class MenusController extends Controller
                         'image' => asset('/images/menus/' . $menu->image),
                     ];
                 }),
-            'filters' => Request::only(['search', 'field', 'direction'])
+            'filters' => RequestFacade::only(['search', 'field', 'direction'])
         ]);
     }
 
@@ -115,8 +116,8 @@ class MenusController extends Controller
         ]);
 
         if(isset($request->image)) {
+            unlink('images/menus/' .$menu->image);
             $file = time(). '.' .$request->image->extension();
-            Storage::delete('public/' .$menu->image);
             $request->image->move(public_path('images/menus'), $file);
             $menu->image = $file;
         }
@@ -135,17 +136,11 @@ class MenusController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(int $id): RedirectResponse
+    public function destroy(Menu $menu): RedirectResponse
     {
-        try {
-            $menu = Menu::find($id);
-            Storage::delete('public/' .$menu->image);
-            $menu->delete();
-
-                return to_route('menus-list.index');
+        $menu->delete();
+        unlink('images/menus/' .$menu->image);
         
-        } catch (\Exception $e) {
-            return response()->json($e->getMessage());
-        }
+        return to_route('menus-list.index');
     }
 }

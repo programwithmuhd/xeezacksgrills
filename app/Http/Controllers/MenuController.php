@@ -14,30 +14,12 @@ class MenuController extends Controller
      */
     public function index()
     {
-        // if (request()->category) {
-        //     $menus = Menu::with('category')->whereHas('category', function($query) {
-        //         $query->where('category_id', request()->category);
-        //     })->get();
-        //     $categories = Category::all();
-        //     $categoryName = $categories->where('slug', request()->category)->first()->name;
-        // } else {
-        //     $menus = Menu::latest()->paginate();
-        //     $categories = Category::all();
-        //     $categoryName = 'All Menus';
-        // }
-
-
-        // return inertia::render('Menus', [
-        //     'menus' => $menus,
-        //     'categories' => $categories,
-        //     'categoryName' => $categoryName,
-        // ]);
         if (request()->category) {
             $menus = Menu::with('category')->whereHas('category', function ($query) {
                 $query->where('id', request()->category);
             })->get();
             $categories = Category::all();
-            $categoryName = $categories->where('id', request()->category)->first()->name;
+            $categoryName = $categories->where('id', request()->category)->first()?->name;
         } else {
             $categories = Category::all();
             $menus = Menu::orderBy('created_at', 'desc')->get();

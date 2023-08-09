@@ -92,7 +92,7 @@ const sort = (field) => {
                                 <th class="w-25 p-3 text-xl font-semibold tracking-wide text-center">Image</th>
                                 <th @click="sort('name')"
                                     class="w-25 p-3 text-xl font-semibold tracking-wide text-center cursor-pointer">
-                                    <div class="flex space-x-4 content-center">
+                                    <div class="flex justify-center space-x-4 content-center">
                                         <span>Favorite</span>
                                         <svg v-if="menusFilter.field === 'name' && menusFilter.direction === 'desc'"
                                             xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
