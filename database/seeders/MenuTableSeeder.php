@@ -66,5 +66,26 @@ class MenuTableSeeder extends Seeder
             'description' => 'Authentic Style Turkish Tzatziki Served with Homemade Turkish Bread or Pita Bread',
             'price' => '5650.00',
         ]);
+        Menu::create([
+            'category_id' => 3,
+            'name' => 'Mixed Appetizers(Any 7 choices) 1',
+            'slug' => 'mixed-appetizers',
+            'description' => 'Authentic Style Turkish Tzatziki Served with Homemade Turkish Bread or Pita Bread',
+            'price' => '3500.00',
+        ]);
+        Menu::create([
+            'category_id' => 3,
+            'name' => 'Mixed Appetizers(Any 7 choices) 2',
+            'slug' => 'mixed-appetizers',
+            'description' => 'Authentic Style Turkish Tzatziki Served with Homemade Turkish Bread or Pita Bread',
+            'price' => '3600.00',
+        ]);
+        Menu::create([
+            'category_id' => 3,
+            'name' => 'Mixed Appetizers(Any 7 choices) 3',
+            'slug' => 'mixed-appetizers',
+            'description' => 'Authentic Style Turkish Tzatziki Served with Homemade Turkish Bread or Pita Bread',
+            'price' => '3750.00',
+        ]);
     }
 }

@@ -172,56 +172,15 @@ const deleteUser = (id) => {
                                         {{ user.email }}
                                     </td>
                                     <td class="p-3 text-center text-xl text-gray-700 whitespace-nowrap">
-                                        <Link :href="route('users.edit', { user: user.id })" class="
-                                        text-sm
-                                        md:text-sm 
-                                        text-white 
-                                        rounded-sm 
-                                        shadow-sm 
-                                        focus:outline-none 
-                                        focus:ring-2 
-                                        focus:ring-offset-2 
-                                        bg-green-500 
-                                        hover:bg-green-600 
-                                        px-8 
-                                        py-2
+                                        <Link :href="route('users.edit', { user: user.id })" class="inline-flex items-center px-4 py-2 
+                                        bg-green-500 border border-transparent 
+                                        rounded-md font-semibold text-xs text-white 
+                                        uppercase tracking-widest 
+                                        hover:bg-green-600 active:bg-green-700 
+                                        focus:outline-none focus:ring-2 
+                                        focus:ring-green-500 focus:ring-offset-2 
+                                        transition ease-in-out duration-150
                                     ">Edit</Link>
-                                    </td>
-                                    <td class="p-3 text-center text-xl text-gray-700 whitespace-nowrap">
-                                        <button @click="confirmDeleteUser" class="inline-flex 
-                                    items-center 
-                                    px-4 
-                                    py-2 
-                                    bg-red-600 
-                                    border 
-                                    border-transparent 
-                                    rounded-md font-semibold 
-                                    text-xs 
-                                    text-white 
-                                    uppercase 
-                                    tracking-widest 
-                                    hover:bg-red-500 
-                                    active:bg-red-700 
-                                    focus:outline-none 
-                                    focus:ring-2 
-                                    focus:ring-red-500 
-                                    focus:ring-offset-2 
-                                    transition 
-                                    ease-in-out 
-                                    duration-150
-                                    ">Delete
-                                        </button>
-                                        <Modal :show="showConfirmDeleteUserModal" @close="closeModal">
-                                            <div class="p-6">
-                                                {{ user.id }}
-                                                <h2 class="text-lg font-semibold text-slate-800">Are you sure you want
-                                                    delete this user?</h2>
-                                                <div class="mt-6 flex space-x-4">
-                                                    <DangerButton @click="deleteUser(menu.id)">Delete</DangerButton>
-                                                    <SecondaryButton @click="closeModal">Cancel</SecondaryButton>
-                                                </div>
-                                            </div>
-                                        </Modal>
                                     </td>
                                 </tr>
                             </template>

@@ -59,7 +59,6 @@ const updateUser = () => {
 <template>
     <Head title="Food Menus List" />
     <DashboardLayout>
-        {{ props.user.first_name }}
         <div class="flex items-center justify-between px-6 bg-white">
             <div class="">
                 <h2 class="text-xl font-bold px-4 py-[22px]">Edit User</h2>

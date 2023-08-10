@@ -11,6 +11,7 @@ const cartStore = useCartStore()
 defineProps({ menus: Object, categories: Object, categoryName: String, menu_item: Object });
 // const { menus } = toRefs(props)
 
+const imageData = ref(null);
 </script>
 
 <template>
@@ -44,7 +45,7 @@ defineProps({ menus: Object, categories: Object, categoryName: String, menu_item
                             <template v-for="menu in menus" :key="menu.id">
                                 <div class="py-4">
                                     <Link :href="route('menu.show', { id: menu.id })" class="">
-                                        <img class="object-contain h-40" :src="menu.image" alt="" srcset="">
+                                        <img class="object-contain h-40" :src="menu.image" alt="Menu image">
                                     </Link>
                                     <div class="px-4 py-2 text-center border-x-2 border-x-gray-200 border-b-2 border-b-black shadow-lg">
                                         <h2 class="text-xl text-gray-700 font-semibold">{{ menu.name.substring(0, 12) }}</h2>

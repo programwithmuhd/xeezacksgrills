@@ -5,6 +5,7 @@ import SideNavItem from '../Components/SideNavItem.vue'
 import MenuIcon from 'vue-material-design-icons/Menu.vue';
 import MagnifyIcon from 'vue-material-design-icons/Magnify.vue';
 import AccountLockOpen from 'vue-material-design-icons/AccountLockOpen.vue';
+import AccountIcon from 'vue-material-design-icons/Account.vue';
 import Logout from 'vue-material-design-icons/Logout.vue';
 
 let showMenu = ref(false);
@@ -63,11 +64,7 @@ const isNavOverlay = () => {
                         class="mt-1"
                         @click="showMenu = !showMenu"
                         >
-                            <img
-                                class="rounded-full"
-                                width="33"
-                                src="https://picsum.photos/id/83/300/320"
-                             />
+                        <AccountIcon size="40" />
                         </button>
 
                         <div

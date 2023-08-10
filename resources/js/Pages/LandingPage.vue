@@ -1,11 +1,14 @@
 <script setup>
+import { Head, Link, useForm } from '@inertiajs/vue3';
 import XeezacksgrillLayout from '@/Layouts/XeezacksgrillLayout.vue';
 import Slider from "@/Pages/Slider.vue";
+import TeaIcon from 'vue-material-design-icons/Tea.vue';
+import GrillIcon from 'vue-material-design-icons/Grill.vue';
+import FishIcon from 'vue-material-design-icons/Fish.vue';
 import InputError from '@/Components/InputError.vue';
 import InputLabel from '@/Components/InputLabel.vue';
 import TextInput from '@/Components/TextInput.vue';
 import TextArea from '@/Components/TextArea.vue';
-import { Head, Link, useForm } from '@inertiajs/vue3';
 
 </script>
 
@@ -65,53 +68,24 @@ import { Head, Link, useForm } from '@inertiajs/vue3';
             </div>
         </div>
         <div class="w-full py-8 bg-[#EDD2877D] px-6">
-            <div class="text-center text-2xl font-bold text-gray-900 py-4">
-                Our Menus
+            <div class="text-center text-4xl font-bold text-gray-900 py-4">
+                Our Favorites
             </div>
-            <div class="flex flex-col flex-auto items-center lg:flex-row justify-between py-4 px-6">
-                <div class="hidden lg:block h-1 bg-black w-4/12 ml-44"></div>
-                <div class="text-5xl text-center w-4/12 px-2">Delicious Lunch Special</div>
-                <div class="hidden lg:block h-1 bg-black w-4/12 mr-44"></div>
-                <div class="text-xl text-center"></div>
+            <div class="max-w-7xl mx-auto flex flex-col flex-auto items-center lg:flex-row justify-between py-6 px-6 gap-10">
+                <TeaIcon size="180"/>
+                <GrillIcon size="180"/>
+                <FishIcon size="180"/>
             </div>
-            <div class="max-w-2xl mx-auto">
-                <div class="text-xl text-center text-gray-900">
-                    Free Soda or Bottle Water with any Sandwich Served With Lettuce, Tomatoes, Onions, Home Made White and
-                    Hot Sauce All Sandwiches are made fresh upon order for our valued customers <br>11am – 4pm
-                </div>
-            </div>
-
-            <div class="max-w-7xl mx-auto py-8">
-                <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-10 px-6">
-                    <div class="border-b border-black py-1">
-                        LAMB DONER/GYRO OR CHICKEN DONER /GYRO WITH PITA BREAD - $10.50
-                    </div>
-                    <div class="border-b border-black py-1">
-                        FALAFEL VEGETARIAN SERVED WITH HUMMUS WITH PITA BREAD - $9.50
-                    </div>
-                    <div class="border-b border-black py-1">
-                        LAMB DONER/GYRO OR CHICKEN DONER /GYRO WITH PITA BREAD - $10.50
-                    </div>
-                    <div class="border-b border-black py-1">
-                        FALAFEL VEGETARIAN SERVED WITH HUMMUS WITH PITA BREAD - $9.50
-                    </div>
-                    <div class="border-b border-black py-1">
-                        LAMB DONER/GYRO OR CHICKEN DONER /GYRO WITH PITA BREAD - $10.50
-                    </div>
-                    <div class="border-b border-black py-1">
-                        FALAFEL VEGETARIAN SERVED WITH HUMMUS WITH PITA BREAD - $9.50
-                    </div>
-                </div>
-            </div>
-
-            <div class="max-w-7xl mx-auto flex flex-col flex-auto items-center lg:flex-row justify-between py-4">
-                <div class="hidden lg:block h-1 bg-black w-4/12 mx-6"></div>
-                <div class="text-5xl text-center w-4/12">
-                    <button type="submit"
-                        class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-lg font-medium text-white bg-black hover:bg-black focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">View
-                        more</button>
-                </div>
-                <div class="hidden lg:block h-1 bg-black w-4/12 mx-6"></div>
+            <div class="flex items-center justify-center mt-20">
+                <Link :href="route('menus.index')" class="inline-flex items-center px-8 py-2 
+                                        bg-black border border-transparent 
+                                        rounded-md font-semibold text-lg text-white 
+                                        uppercase tracking-widest 
+                                        hover:bg-bg-black active:bg-bg-black 
+                                        focus:outline-none focus:ring-2 
+                                        focus:ring-bg-black focus:ring-offset-2 
+                                        transition ease-in-out duration-150
+                                    ">View More</Link>
             </div>
         </div>
 
@@ -120,13 +94,26 @@ import { Head, Link, useForm } from '@inertiajs/vue3';
                 <div class="md:text-5xl text-3xl font-bold text-gray-900 text-center py-4">Reservation</div>
                 <div class="text-lg text-gray-900 text-center py-4">Please reserve your table to enable us serve you better!
                 </div>
-                <div class="max-w-xl mx-auto text-center mb-8">
+                <div class="max-w-xl mx-auto text-center">
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione at officia, iure beatae voluptatem
                     possimus aut perferendis quod deleniti optio, id nihil, deserunt nulla ullam rerum explicabo temporibus
                     numquam cumque?
                 </div>
-                <div class="text-xl font-medium text-gray-900 text-center py-4">Call Us For Reservations!</div>
-                <div class="md:text-5xl text-3xl font-bold text-gray-900 text-center py-4">07038989839</div>
+                <div class="flex items-center justify-center py-4">
+                <Link :href="route('menus.index')" class="inline-flex items-center px-8 py-2 
+                                        bg-green-600 border border-transparent 
+                                        rounded-md font-semibold text-lg text-white 
+                                        uppercase tracking-widest 
+                                        hover:bg-green-500 active:bg-bg-yellow-600 
+                                        focus:outline-none focus:ring-2 
+                                        focus:ring-bg-green-500 focus:ring-offset-2 
+                                        transition ease-in-out duration-150
+                                    ">Book Table</Link>
+            </div>
+                <div class="mt-10">
+                    <div class="text-xl font-medium text-gray-900 text-center">Call Us For Reservations!</div>
+                    <div class="md:text-5xl text-3xl font-bold text-gray-900 text-center py-4">07038989839</div>
+                </div>
             </div>
         </div>
     </XeezacksgrillLayout></template>
