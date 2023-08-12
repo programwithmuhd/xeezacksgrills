@@ -5,16 +5,17 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Application;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\MenuController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\AddressController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LandingPageController;
+use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\Backend\MenusController;
 use App\Http\Controllers\Backend\CategoriesController;
-use App\Http\Controllers\Backend\UserController;
-use App\Http\Controllers\CustomerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -78,6 +79,7 @@ Route::delete('/categories-favorites/{category}', [CategoriesController::class, 
     ->name('categories-favorites.destroy');
 
     Route::get('/menus-list', [MenusController::class, 'index'])->name('menus-list.index');
+    Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
     Route::get('/menus-list/create', [MenusController::class, 'create'])->name('menus-list.create');
     Route::post('/menus-list', [MenusController::class, 'store'])->name('menus-list.store');
     Route::get('/menus-list/{menu}/edit', [MenusController::class, 'edit'])

@@ -23,6 +23,7 @@
   import ThumbUpOutline from 'vue-material-design-icons/ThumbUpOutline.vue';
   import History from 'vue-material-design-icons/History.vue';
   import CartIcon from 'vue-material-design-icons/Cart.vue';
+  import BankIcon from 'vue-material-design-icons/BankTransferIn.vue';
 
   const props = defineProps({
     openSideNav: Boolean,
@@ -36,6 +37,7 @@
   if (iconString.value === 'Home') icon = Home
   if (iconString.value === 'Category') icon = FolderPlayOutline
   if (iconString.value === 'Menus') icon = CartIcon
+  if (iconString.value === 'Orders') icon = BankIcon
   if (iconString.value === 'Users') icon = Users
   if (iconString.value === 'Address') icon = History
 </script>

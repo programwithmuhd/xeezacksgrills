@@ -72,13 +72,13 @@ const isNavOverlay = () => {
                             id="PopMenu"
                             class="absolute bg-white rounded-lg py-1.5 w-[200px] shadow-xl border top-[43px] -right-2"
                         >
-                            <NuxtLink
+                            <Link
                             @click="showMenu = false"
                             class="flex items-center justify-start py-3 px-2 hover:bg-gray-100 cursor-pointer"
                             >
                                 <AccountLockOpen size="20" />
                                 <span class="pl-2 font-semibold text-sm">Profile</span>
-                            </NuxtLink>
+                            </Link>
                             <div
                             class="flex items-center justify-start py-3 px-1.5 hover:bg-gray-100 border-t cursor-pointer"
                             >
@@ -109,6 +109,9 @@ const isNavOverlay = () => {
                     </Link>
                     <Link :href="route('menus-list.index')">
                         <SideNavItem :openSideNav="openSideNav" iconString="Menus" />
+                    </Link>
+                    <Link :href="route('orders.index')">
+                        <SideNavItem :openSideNav="openSideNav" iconString="Orders" />
                     </Link>
                     <Link :href="route('users.index')">
                         <SideNavItem :openSideNav="openSideNav" iconString="Users" />
@@ -151,6 +154,9 @@ const isNavOverlay = () => {
                 </Link>
                 <Link :href="route('menus-list.index')">
                     <SideNavItem :openSideNav="openSideNav" iconString="Menus" />
+                </Link>
+                <Link :href="route('orders.index')">
+                    <SideNavItem :openSideNav="openSideNav" iconString="Orders" />
                 </Link>
                 <Link :href="route('users.index')">
                     <SideNavItem :openSideNav="openSideNav" iconString="Users" />

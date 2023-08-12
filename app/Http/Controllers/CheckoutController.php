@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Menu;
+use App\Models\Order;
 use Inertia\Inertia;
 use Illuminate\Http\Request;
 
@@ -51,12 +52,17 @@ class CheckoutController extends Controller
 
         $pay = json_decode($this->initializePayment($formData));
         // dd($pay);
-        if ($pay->status) {
-            $url = $pay->data->authorization_url;
-            return Inertia::location($url);
+        if ($pay) {
+            if ($pay->status) {
+                $url = $pay->data->authorization_url;
+                return Inertia::location($url);
+            } else {
+                return back()->withErrors($pay->message);
+            }
         } else {
-            return back()->withErrors($pay->message);
+            return back()->withErrors('Something went wrong! Please check your internet connection and try again!');
         }
+        
     }
 
     public function initializePayment($formData)
@@ -109,8 +115,28 @@ class CheckoutController extends Controller
     {
         $response = json_decode($this->verifyPayment(request('reference')));
         // dd($response);
-        return Inertia::render('CheckoutSuccess');
+        if ($response) {
+            if($response->status) {
+                $data = $response->data;
+                $order = new Order();
+                $order->status = $data->status;
+                $order->reference = $data->reference;
+                $order->phone = $data->customer->phone;
+                $order->email = $data->customer->email;
+                $order->amount = $data->amount;
+                $order->fees = $data->fees;
+                $order->save();
+                return Inertia::render('CheckoutSuccess', [
+                    'data' => $data
+                ]);
         // return redirect()->route('checkout.callback');
+            } else {
+                return back()->withErrors($response->message);
+            }
+        } else {
+            return back()->withErrors('Payment Verification not Successful! Try Again!');
+        }
+        
     }
 
     /**

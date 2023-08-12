@@ -10,6 +10,8 @@ import { storeToRefs } from 'pinia';
 const cartStore = useCartStore()
 const { cart } = storeToRefs(cartStore)
 
+const props = defineProps({data:Object});
+
 onMounted(() => {
     cartStore.cartContent = {}
 })
@@ -20,6 +22,7 @@ onMounted(() => {
 <template>
     <Head title="Checkout Success" />
     <XeezacksgrillLayout>
+        <!-- {{ props.data }} -->
         <div class="mt-10 mb-6 max-w-xl mx-auto text-3xl text-center font-extrabold">Thank you for ordering with us!</div>
         <div class="max-w-xl mx-auto">
             <div class="flex flex-col p-5 rounded-lg shadow bg-white">
