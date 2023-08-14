@@ -100,7 +100,7 @@ import TextArea from '@/Components/TextArea.vue';
                     numquam cumque?
                 </div>
                 <div class="flex items-center justify-center py-4">
-                <Link :href="route('menus.index')" class="inline-flex items-center px-8 py-2 
+                <Link :href="route('reservation.index')" class="inline-flex items-center px-8 py-2 
                                         bg-green-600 border border-transparent 
                                         rounded-md font-semibold text-lg text-white 
                                         uppercase tracking-widest 

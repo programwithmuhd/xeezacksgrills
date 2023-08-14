@@ -13,6 +13,7 @@ use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LandingPageController;
+use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\Backend\MenusController;
 use App\Http\Controllers\Backend\CategoriesController;
@@ -36,8 +37,9 @@ Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
 Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index');
 Route::post('/checkout', [CheckoutController::class, 'initiate'])->name('checkout.initiate');
 Route::get('/verify', [CheckoutController::class, 'paymentCallBack'])->name('checkout.callback');
+Route::get('/reservation', [ReservationController::class, 'index'])->name('reservation.index');
+Route::post('/reservation', [ReservationController::class, 'store']);
 Route::get('/contact', function() {return Inertia::render('Contact');})->name('contact.index');
-Route::get('/reservation', function() {return Inertia::render('Reservation');})->name('reservation.index');
 
 // Dashboard layout pages
 Route::get('/address', [AddressController::class, 'index'])->middleware(['auth', 'verified'])

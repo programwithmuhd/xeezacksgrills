@@ -42,11 +42,13 @@ const total = computed(() => {
     }, 0);
 });
 
+const cartItems = formattedCart.value
 
 const form = reactive({
     email: usePage().props.auth.user.email,
     phone: usePage().props.auth.user.phone,
     amount: total,
+    metadata: cartItems
 });
 
 // Paystack codes goes here
@@ -54,8 +56,9 @@ const form = reactive({
 let submit = () => {
     router.post('/checkout', form)
 }
-
-
+// cartItems.forEach(function(item) {
+//   console.log("Name:", item);
+// });
 
 
 </script>
@@ -67,6 +70,7 @@ let submit = () => {
         
         <Head title="Checkout" />
         <div class="w-full bg-gray-200">
+            <!-- {{ formattedCart }} -->
             <div class="max-w-7xl bg-gray mx-auto">
                 <div class="flex flex-col sm:flex-col lg:flex-row p-6 gap-4">
                     <div class="w-full lg:w-3/5">
@@ -130,6 +134,9 @@ let submit = () => {
                                     </div>
                                     <div class="">
                                         <TextInput v-model="form.amount" type="hidden" class="mt-1 block w-full" required />
+                                    </div>
+                                    <div class="">
+                                        <TextInput v-model="form.metadata" type="hidden" class="mt-1 block w-full" value="JSON.stringify(cart)" required />
                                     </div>
                                     <div class="py-4">
                                         <button type="submit" class="

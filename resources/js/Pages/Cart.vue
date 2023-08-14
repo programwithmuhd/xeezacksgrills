@@ -12,7 +12,7 @@ import { storeToRefs } from 'pinia';
 const cartStore = useCartStore()
 const { cart } = storeToRefs(cartStore)
 
-const props = defineProps({menus: Object});
+const props = defineProps({ menus: Object });
 
 
 const formattedCart = computed(() => {
@@ -20,21 +20,21 @@ const formattedCart = computed(() => {
         const menu = cartStore.cartContent[menuId];
 
         return {
-          id: menu.id,
-          image: props.menus.find((c) => c.id === menu.id).image,
-          name: props.menus.find((c) => c.id === menu.id).name,
-          price: props.menus.find((c) => c.id === menu.id).price,
-          quantity: menu.quantity,
-          cost: menu.quantity * props.menus.find((c) => c.id === menu.id).price,
+            id: menu.id,
+            image: props.menus.find((c) => c.id === menu.id).image,
+            name: props.menus.find((c) => c.id === menu.id).name,
+            price: props.menus.find((c) => c.id === menu.id).price,
+            quantity: menu.quantity,
+            cost: menu.quantity * props.menus.find((c) => c.id === menu.id).price,
         }
-      })
+    })
 });
 
 const cartTotal = computed(() => {
     return Object.keys(cartStore.cartContent).reduce((acc, id) => {
         const menu = props.menus.find(m => m.id == id);
-        if(menu) {
-            return acc + menu.price * cartStore.cartContent[id].quantity 
+        if (menu) {
+            return acc + menu.price * cartStore.cartContent[id].quantity
         }
         return acc + 0;
     }, 0);
@@ -76,109 +76,48 @@ const cartTotal = computed(() => {
                                         </div>
                                     </td>
                                     <td class="p-3 text-center text-xl text-gray-700 whitespace-nowrap">{{ menu.name }}</td>
-                                    <td class="p-3 text-center text-xl text-gray-700 whitespace-nowrap">NGN{{ menu.price * menu.quantity }}</td>
+                                    <td class="p-3 text-center text-xl text-gray-700 whitespace-nowrap">NGN{{ menu.price *
+                                        menu.quantity }}</td>
                                     <td class="p-3  text-center text-xl text-gray-700 whitespace-nowrap">
                                         <div class="flex items-center justify-center">
-                                            <MinusIcon @click="cartStore.removeFromCart(menu.id)" class="cursor-pointer px-8 text-2xl font-bold text-black" size="30" />
+                                            <MinusIcon @click="cartStore.removeFromCart(menu.id)"
+                                                class="cursor-pointer px-8 text-2xl font-bold text-black" size="30" />
                                             <div class="px-8 text-2xl font-bold text-black">{{ menu.quantity }}</div>
-                                            <PlusIcon @click="cartStore.addToCart(menu.id)" class="cursor-pointer px-8 text-2xl font-bold text-black" size="30" />
+                                            <PlusIcon @click="cartStore.addToCart(menu.id)"
+                                                class="cursor-pointer px-8 text-2xl font-bold text-black" size="30" />
                                         </div>
                                     </td>
                                     <td class="p-3 text-center text-xl text-gray-700 whitespace-nowrap">
-                                        <TrashIcon class="cursor-pointer text-red-600" @click="cartStore.removeMenuFromCart(menu.id)" size="40" />
+                                        <TrashIcon class="cursor-pointer text-red-600"
+                                            @click="cartStore.removeMenuFromCart(menu.id)" size="40" />
                                     </td>
                                 </tr>
                             </template>
-                            <!-- <tr class="even:bg-[#EDD2877D] odd:bg-gray-200">
-                                <td class="p-3 text-center text-xl text-gray-700 whitespace-nowrap">
-                                    <div class="w-20">
-                                        <img class="object-fill object-contain" src="/images/sliders/slide1.jpg" alt="">
-                                    </div>
-                                </td>
-                                <td class="p-3 text-center text-xl text-gray-700 whitespace-nowrap">Two</td>
-                                <td class="p-3 text-center text-xl text-gray-700 whitespace-nowrap">Three</td>
-                                <td class="p-3  text-center text-xl text-gray-700 whitespace-nowrap">
-                                    <input type="number" name="email" value="" class="w-24 border border-gray-300 px-3 py-2 rounded-lg shadow-sm focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500">
-                                </td>
-                                <td class="p-3 text-center text-xl text-gray-700 whitespace-nowrap">
-                                    <button type="submit" class="text-lg md:text-lg text-gray-900 rounded-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 px-8 py-2">Update</button>
-                                </td>
-                                <td class="p-3 text-center text-xl text-gray-700 whitespace-nowrap">
-                                    <button type="submit" class="text-lg md:text-lg text-gray-900 rounded-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 px-8 py-2">Delete</button>
-                                </td>
-                            </tr>
-                            <tr class="even:bg-[#EDD2877D] odd:bg-gray-200">
-                                <td class="p-3 text-center text-xl text-gray-700 whitespace-nowrap">
-                                    <div class="w-20">
-                                        <img class="object-fill object-contain" src="/images/sliders/slide1.jpg" alt="">
-                                    </div>
-                                </td>
-                                <td class="p-3 text-center text-xl text-gray-700 whitespace-nowrap">Two</td>
-                                <td class="p-3 text-center text-xl text-gray-700 whitespace-nowrap">Three</td>
-                                <td class="p-3  text-center text-xl text-gray-700 whitespace-nowrap">
-                                    <input type="number" name="email" value="" class="w-24 border border-gray-300 px-3 py-2 rounded-lg shadow-sm focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500">
-                                </td>
-                                <td class="p-3 text-center text-xl text-gray-700 whitespace-nowrap">
-                                    <button type="submit" class="text-lg md:text-lg text-gray-900 rounded-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 px-8 py-2">Update</button>
-                                </td>
-                                <td class="p-3 text-center text-xl text-gray-700 whitespace-nowrap">
-                                    <button type="submit" class="text-lg md:text-lg text-gray-900 rounded-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 px-8 py-2">Delete</button>
-                                </td>
-                            </tr>
-                            <tr class="even:bg-[#EDD2877D] odd:bg-gray-200">
-                                <td class="p-3 text-center text-xl text-gray-700 whitespace-nowrap">
-                                    <div class="w-20">
-                                        <img class="object-fill object-contain" src="/images/sliders/slide1.jpg" alt="">
-                                    </div>
-                                </td>
-                                <td class="p-3 text-center text-xl text-gray-700 whitespace-nowrap">Two</td>
-                                <td class="p-3 text-center text-xl text-gray-700 whitespace-nowrap">Three</td>
-                                <td class="p-3  text-center text-xl text-gray-700 whitespace-nowrap">
-                                    <input type="number" name="email" value="" class="w-24 border border-gray-300 px-3 py-2 rounded-lg shadow-sm focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500">
-                                </td>
-                                <td class="p-3 text-center text-xl text-gray-700 whitespace-nowrap">
-                                    <button type="submit" class="text-lg md:text-lg text-gray-900 rounded-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 px-8 py-2">Update</button>
-                                </td>
-                                <td class="p-3 text-center text-xl text-gray-700 whitespace-nowrap">
-                                    <button type="submit" class="text-lg md:text-lg text-gray-900 rounded-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 px-8 py-2">Delete</button>
-                                </td>
-                            </tr>
-                            <tr class="even:bg-[#EDD2877D] odd:bg-gray-200">
-                                <td class="p-3 text-center text-xl text-gray-700 whitespace-nowrap">
-                                    <div class="w-20">
-                                        <img class="object-fill object-contain" src="/images/sliders/slide1.jpg" alt="">
-                                    </div>
-                                </td>
-                                <td class="p-3 text-center text-xl text-gray-700 whitespace-nowrap">Two</td>
-                                <td class="p-3 text-center text-xl text-gray-700 whitespace-nowrap">Three</td>
-                                <td class="p-3  text-center text-xl text-gray-700 whitespace-nowrap">
-                                    <input type="number" name="email" value="" class="w-24 border border-gray-300 px-3 py-2 rounded-lg shadow-sm focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500">
-                                </td>
-                                <td class="p-3 text-center text-xl text-gray-700 whitespace-nowrap">
-                                    <button type="submit" class="text-lg md:text-lg text-gray-900 rounded-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 px-8 py-2">Update</button>
-                                </td>
-                                <td class="p-3 text-center text-xl text-gray-700 whitespace-nowrap">
-                                    <button type="submit" class="text-lg md:text-lg text-gray-900 rounded-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 px-8 py-2">Delete</button>
-                                </td>
-                            </tr> -->
                         </tbody>
                     </table>
 
-                    <div class="flex-col sm:flex-col md:flex-row flex justify-between px-6 py-8">
+                    <div class="flex-col sm:flex-col md:flex-row flex items-center justify-between px-6 py-8 gap-10">
                         <div class="">
-                            <Link href="/menus" class="text-lg md:text-lg text-gray-900 rounded-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 px-8 py-2">Continue Ordering</LInk>
+                            <Link :href="route('menus.index')" 
+                            class="
+                                    bg-yellow-200
+                                    block
+                                    w-full
+                                    text-center
+                                    px-8
+                                    py-2
+                                    font-bold
+                                    text-sm
+                                    text-black
+                                    rounded-lg
+                                    border
+                                    shadow-sm
+                                    cursor-pointer">Continue Ordering</LInk>
                         </div>
                         <div class="">
-                            <!-- <Link href="/checkout" class="text-lg md:text-lg text-gray-900 rounded-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 px-8 py-2">Checkout</Link>
-                            
-                            -->
-
-                            <Link
-                                :disabled="cartTotal === 0"
-                                :class="cartTotal === 0 ? 'bg-gray-400' : 'bg-green-500 hover:bg-green-600'"
-                                as="button"
-                                :href="$page.props.auth.user !== null ? route('checkout.index') : route('login')"
-                                class="
+                            <Link :disabled="cartTotal === 0"
+                                :class="cartTotal === 0 ? 'bg-gray-400' : 'bg-green-500 hover:bg-green-600'" as="button"
+                                :href="$page.props.auth.user !== null ? route('checkout.index') : route('login')" class="
                                     block
                                     w-full
                                     text-center
@@ -191,9 +130,8 @@ const cartTotal = computed(() => {
                                     border
                                     shadow-sm
                                     cursor-pointer
-                                "
-                            >
-                                Proceed to Checkout
+                                ">
+                            Proceed to Checkout
                             </Link>
                         </div>
                     </div>
@@ -217,9 +155,10 @@ const cartTotal = computed(() => {
                             </tr>
                             <tr class="even:bg-[#EDD2877D] odd:bg-gray-200">
                                 <td class="p-3 text-center text-xl text-gray-700 whitespace-nowrap"><b>Subtotal</b></td>
-                                <td class="p-3 text-center text-xl text-gray-700 whitespace-nowrap"><b>NGN{{ cartTotal }}</b></td>
+                                <td class="p-3 text-center text-xl text-gray-700 whitespace-nowrap"><b>NGN{{ cartTotal
+                                }}</b></td>
                             </tr>
-                            </tbody>
+                        </tbody>
                     </table>
                 </div>
             </div>

@@ -45,6 +45,7 @@ class CheckoutController extends Controller
             // 'state' => request('state'),
             // 'city' => request('city'),
             'amount' => request('amount') * 100,
+            'metadata' => request('metadata '),
             // 'addr1' => request('addr1'),
             // 'addr1' => request('addr1'),
             'callback_url' => route('checkout.callback'),

@@ -50,7 +50,7 @@ const isNavOverlay = () => {
                     <MenuIcon fillColor="bg-black" :size="26" />
                 </button>
                 <div class="mx-2"></div>
-                <Link :href="route('landing-page.index')" class="flex items-center justify-center mr-10 cursor-pointer">
+                <Link :href="route('dashboard.index')" class="flex items-center justify-center mr-10 cursor-pointer">
                 <img class="" width="80" height="120" src="/images/logos/footer-logo.jpg" alt="">
                 <h2 class="hidden md:block text-xl font-medium text-black">Dashboard</h2>
                 </Link>
@@ -100,7 +100,7 @@ const isNavOverlay = () => {
             <!-- primary color -->
             <!-- bg-[#F4E3B4] -->
                 <ul :class="[!openSideNav ? 'p-2' : 'pb-2']" class="-mt-0.5 w-full">
-                    <Link href="route('landing-page.index')">
+                    <Link :href="route('dashboard.index')">
                     <SideNavItem :openSideNav="openSideNav" iconString="Home" />
                     </Link>
                     <div class="border-b border-b-gray-700 my-2.5"></div>
@@ -145,7 +145,7 @@ const isNavOverlay = () => {
                 </Link>
             </div> -->
             <ul class="w-full px-1 py-2 mt-2">
-                <Link :href="route('landing-page.index')">
+                <Link :href="route('dashboard.index')">
                 <SideNavItem :openSideNav="true" iconString="Home" />
                 </Link>
                 <div class="border-b border-b-gray-700 my-2.5"></div>
