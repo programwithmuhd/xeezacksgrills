@@ -26,8 +26,7 @@ import TextArea from '@/Components/TextArea.vue';
                         Grill House</h2>
                     </div>
 
-                    <div class="py-4 text-lg text-gray-900">Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                        Impedit ipsam nemo vitae exercitationem laudantium? Ipsum.</div>
+                    <div class="py-4 text-lg text-gray-900">At Xeezacks Grill House, we are passionate about delivering a dining experience that transcends mere sustenance. Our mission is to ignite your taste buds with the sizzling symphony of perfectly grilled beef, the oceanic delight of succulent fish, and the comforting warmth of rejuvenating tea.</div>
                     <div class="py-4 text-lg text-gray-900">The best turkish grill in kaduna state is here.</div>
 
                     <div class="aspect-w-9 aspect-h-5">
@@ -76,6 +75,13 @@ import TextArea from '@/Components/TextArea.vue';
                 <GrillIcon size="180"/>
                 <FishIcon size="180"/>
             </div>
+            <div class="max-w-7xl mx-auto">
+                        
+                        <p class="text-2xl text-gray-900 leading-8">
+                            We source the finest ingredients to ensure that every dish tells a story of flavor and freshness. Our beef is handpicked for its marbling and tenderness, guaranteeing a melt-in-your-mouth experience. The fish we select comes from sustainable sources, reflecting our commitment to the environment and responsible consumption. And our teas? They're carefully curated to whisk you away on a journey of tranquility with each soothing sip.
+                        </p>
+                    </div>
+
             <div class="flex items-center justify-center mt-20">
                 <Link :href="route('menus.index')" class="inline-flex items-center px-8 py-2 
                                         bg-black border border-transparent 
@@ -94,10 +100,8 @@ import TextArea from '@/Components/TextArea.vue';
                 <div class="md:text-5xl text-3xl font-bold text-gray-900 text-center py-4">Reservation</div>
                 <div class="text-lg text-gray-900 text-center py-4">Please reserve your table to enable us serve you better!
                 </div>
-                <div class="max-w-xl mx-auto text-center">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione at officia, iure beatae voluptatem
-                    possimus aut perferendis quod deleniti optio, id nihil, deserunt nulla ullam rerum explicabo temporibus
-                    numquam cumque?
+                <div class="max-w-xl text-lg text-gray-900 mx-auto text-center">
+                    Come savor the symphony of flavors at Xeezacks Grill House. Join us as we embark on a culinary expedition, where the harmony of grilled beef, fish, and tea creates a symphony for your senses.
                 </div>
                 <div class="flex items-center justify-center py-4">
                 <Link :href="route('reservation.index')" class="inline-flex items-center px-8 py-2 
