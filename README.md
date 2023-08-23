@@ -1,4 +1,4 @@
-# XeezacksGrill Web Application
+# XeezacksGrill Ecommerce Web Application
 
 ![](public/images/screenshots/landing-page.png)
 
