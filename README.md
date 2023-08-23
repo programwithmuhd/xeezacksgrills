@@ -2,7 +2,7 @@
 
 ![](public/images/screenshots/landing-page.png)
 
-A modern eatery ecommerce web application for Xeezacks Grill, developed using Laravel Inertia, Vue 3 Composition API, TailwindCSS, and integrated with the Paystack payment gateway. The application features a fully functional shopping cart, favorite menu management, user authentication, and order tracking.
+A modern eatery ecommerce web application for Xeezacks Grill, developed using Laravel Inertia, Vue 3 Composition API, TailwindCSS, and integrated with the Paystack payment gateway. The application features a fully functional shopping cart, favorite menu management, user authentication, and administrative management.
 
 ### Table of Contents
 
