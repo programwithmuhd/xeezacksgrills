@@ -33,7 +33,7 @@ A modern web application for Xeezacks Grill, developed using Laravel Inertia, Vu
 
 ### Screenshots of the project
 
-![](public/images/screenshots/1.png)
+![](public/images/screenshots/2.png)
 
 ![](public/images/screenshots/2.png)
 
