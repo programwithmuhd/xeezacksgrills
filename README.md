@@ -1,66 +1,104 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# XeezacksGrill Web Application
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+![](public/images/logos/footer-logo.jpg)
 
-## About Laravel
+A modern web application for Xeezacks Grill, developed using Laravel Inertia, Vue 3 Composition API, TailwindCSS, and integrated with the Paystack payment gateway. The application features a fully functional shopping cart, favorite menu management, user authentication, and order tracking.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+### Table of Contents
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- Features
+- Tech Stack
+- Screenshots
+- Installation
+- Usage
+- Project Status
+- License
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### Features
 
-## Learning Laravel
+- Shopping Cart: Users can add, remove, and update items in their shopping cart. Real-time updates using Pinia store.
+- Paystack Integration: Seamlessly integrated Paystack payment gateway for secure and convenient online payments.
+- Favorite Menu: Users can save their favorite menu items. CRUD operations for managing favorite dishes.
+- User Authentication: Secure user registration and login system with hashed passwords.
+- Orders Tracking: Users can view their order history and track the status of their current orders.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### Tech Stack
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+- Frontend: Vue 3 Composition API, Inertia.js
+- Styling: TailwindCSS
+- State Management: Pinia
+- Backend: Laravel
+- Database: MySQL
+- Payment Gateway: Paystack
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### Screenshots of the project
 
-## Laravel Sponsors
+![](public/images/screenshots/1.png)
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+![](public/images/screenshots/2.png)
 
-### Premium Partners
+![](public/images/screenshots/3.png)
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+![](public/images/screenshots/4.png)
 
-## Contributing
+![](public/images/screenshots/5.png)
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+![](public/images/screenshots/6.png)
 
-## Code of Conduct
+![](public/images/screenshots/7.png)
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+![](public/images/screenshots/8.png)
 
-## Security Vulnerabilities
+![](public/images/screenshots/9.png)
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+![](public/images/screenshots/10.png)
 
-## License
+![](public/images/screenshots/11.png)
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+![](public/images/screenshots/12.png)
+
+![](public/images/screenshots/13.png)
+
+![](public/images/screenshots/14.png)
+
+![](public/images/screenshots/15.png)
+
+![](public/images/screenshots/16.png)
+
+![](public/images/screenshots/17.png)
+
+![](public/images/screenshots/18.png)
+
+![](public/images/screenshots/19.png)
+
+![](public/images/screenshots/20.png)
+
+### Installation
+
+1 Clone the repository: git clone https://github.com/your-username/xeexacksgrill.git
+2 Install dependencies:
+
+composer install
+npm install
+
+3 Configure your .env file with database and Paystack API credentials.
+4 Migrate and seed the database:
+
+php artisan migrate --seed
+
+### Usage
+
+1 Register or log in to your account.
+2 Browse the menu, add items to your cart.
+3 Go to your cart, review items, and proceed to checkout.
+4 Complete the payment using Paystack integration.
+5 Manage your favorite menu items in the "Favorites" section.
+6 View your order history and track the status of your orders.
+
+### Project Status
+Please note that the XeezacksGrill Web Application is currently a work in progress and is being developed for a client. While the project is not fully completed, the provided information and features showcase the direction and capabilities of the application. Regular updates will be made to improve and complete the project.
+
+Thank you for your understanding and consideration.
+
+### License
+This project is licensed under the MIT License
