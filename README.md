@@ -1,8 +1,8 @@
 # XeezacksGrill Web Application
 
-![](public/images/screenshots/1.png)
+![](public/images/screenshots/landing-page.png)
 
-A modern web application for Xeezacks Grill, developed using Laravel Inertia, Vue 3 Composition API, TailwindCSS, and integrated with the Paystack payment gateway. The application features a fully functional shopping cart, favorite menu management, user authentication, and order tracking.
+A modern eatery ecommerce web application for Xeezacks Grill, developed using Laravel Inertia, Vue 3 Composition API, TailwindCSS, and integrated with the Paystack payment gateway. The application features a fully functional shopping cart, favorite menu management, user authentication, and order tracking.
 
 ### Table of Contents
 
@@ -73,27 +73,67 @@ A modern web application for Xeezacks Grill, developed using Laravel Inertia, Vu
 
 ![](public/images/screenshots/20.png)
 
+![](public/images/screenshots/21.png)
+
+![](public/images/screenshots/22.png)
+
+![](public/images/screenshots/23.png)
+
+![](public/images/screenshots/24.png)
+
+![](public/images/screenshots/29.png)
+
+![](public/images/screenshots/25.png)
+
+![](public/images/screenshots/26.png)
+
+![](public/images/screenshots/27.png)
+
+![](public/images/screenshots/28.png)
+
+![](public/images/screenshots/30.png)
+
+![](public/images/screenshots/31.png)
+
+![](public/images/screenshots/32.png)
+
+![](public/images/screenshots/33.png)
+
+![](public/images/screenshots/34.png)
+
+![](public/images/screenshots/35.png)
+
+![](public/images/screenshots/36.png)
+
+![](public/images/screenshots/37.png)
+
+![](public/images/screenshots/38.png)
+
+![](public/images/screenshots/39.png)
+
+![](public/images/screenshots/40.png)
+
 ### Installation
 
-1 Clone the repository: git clone https://github.com/your-username/xeexacksgrill.git
-2 Install dependencies:
+- Clone the repository: git clone https://github.com/your-username/xeexacksgrill.git
+- Install dependencies:
 
-composer install
-npm install
+- composer install
+- npm install
 
-3 Configure your .env file with database and Paystack API credentials.
-4 Migrate and seed the database:
+- Configure your .env file with database and Paystack API credentials.
+- Migrate and seed the database:
 
-php artisan migrate --seed
+- php artisan migrate --seed
 
 ### Usage
 
-1 Register or log in to your account.
-2 Browse the menu, add items to your cart.
-3 Go to your cart, review items, and proceed to checkout.
-4 Complete the payment using Paystack integration.
-5 Manage your favorite menu items in the "Favorites" section.
-6 View your order history and track the status of your orders.
+- Register or log in to your account.
+- Browse the menu, add items to your cart.
+- Go to your cart, review items, and proceed to checkout.
+- Complete the payment using Paystack integration.
+- Manage your favorite menu items in the "Favorites" section.
+- View your order history and track the status of your orders.
 
 ### Project Status
 Please note that the XeezacksGrill Web Application is currently a work in progress and is being developed for a client. While the project is not fully completed, the provided information and features showcase the direction and capabilities of the application. Regular updates will be made to improve and complete the project.
